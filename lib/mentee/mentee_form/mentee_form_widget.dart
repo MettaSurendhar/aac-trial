@@ -71,7 +71,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(100.0),
             child: AppBar(
-              backgroundColor: Color(0xFFE6E6E6),
+              backgroundColor: Color(0xFF033FA4),
               automaticallyImplyLeading: false,
               title: Align(
                 alignment: AlignmentDirectional(0.0, 0.0),
@@ -92,35 +92,35 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text(
-                                'Mentee Registration Form',
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      color: Colors.black,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey('Inter'),
-                                    ),
-                              ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 8.0),
                                 child: FlutterFlowIconButton(
                                   borderRadius: 30.0,
                                   borderWidth: 3.0,
-                                  buttonSize: 40.0,
+                                  buttonSize: 30.0,
                                   icon: Icon(
-                                    Icons.close_rounded,
-                                    color: Color(0xFFFF0000),
-                                    size: 24.0,
+                                    Icons.arrow_back_ios,
+                                    color: Colors.white,
+                                    size: 20.0,
                                   ),
                                   onPressed: () async {
                                     context.safePop();
                                   },
                                 ),
+                              ),
+                              Text(
+                                'Mentee Registration Form',
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey('Inter'),
+                                    ),
                               ),
                             ],
                           ),
@@ -163,7 +163,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                           ),
                           child: Form(
                             key: _model.formKey,
-                            autovalidateMode: AutovalidateMode.always,
+                            autovalidateMode: AutovalidateMode.disabled,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,7 +200,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                           .fullNameTextController,
                                                       focusNode: _model
                                                           .fullNameFocusNode,
-                                                      autofocus: true,
+                                                      autofocus: false,
                                                       textCapitalization:
                                                           TextCapitalization
                                                               .words,
@@ -217,9 +217,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
+                                                                  color: Color(
+                                                                      0xFF616469),
                                                                   fontSize:
                                                                       16.0,
                                                                   letterSpacing:
@@ -268,9 +267,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                             OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
+                                                            color: Color(
+                                                                0xFF443F9E),
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
@@ -296,9 +294,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                             OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
+                                                            color: Color(
+                                                                0xFFFF0000),
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
@@ -310,9 +307,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                             OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
+                                                            color: Color(
+                                                                0xFFFF0000),
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
@@ -340,9 +336,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                     20.0),
                                                         prefixIcon: Icon(
                                                           Icons.person,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color:
+                                                              Color(0xFF124B99),
                                                         ),
                                                       ),
                                                       style: FlutterFlowTheme
@@ -359,10 +354,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                     .containsKey(
                                                                         'Inter'),
                                                           ),
-                                                      cursorColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
+                                                      cursorColor: Colors.black,
                                                       validator: _model
                                                           .fullNameTextControllerValidator
                                                           .asValidator(context),
@@ -372,7 +364,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                           .branchTextController,
                                                       focusNode: _model
                                                           .branchFocusNode,
-                                                      autofocus: true,
+                                                      autofocus: false,
                                                       textCapitalization:
                                                           TextCapitalization
                                                               .words,
@@ -389,6 +381,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
+                                                                  color: Color(
+                                                                      0xFF616469),
                                                                   letterSpacing:
                                                                       0.0,
                                                                   useGoogleFonts: GoogleFonts
@@ -437,9 +431,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                             OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
+                                                            color: Color(
+                                                                0xFF443F9E),
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
@@ -465,9 +458,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                             OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
+                                                            color: Color(
+                                                                0xFFFF0000),
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
@@ -479,9 +471,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                             OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
+                                                            color: Color(
+                                                                0xFFFF0000),
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
@@ -509,9 +500,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                     20.0),
                                                         prefixIcon: Icon(
                                                           Icons.psychology,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color:
+                                                              Color(0xFF124B99),
                                                         ),
                                                       ),
                                                       style: FlutterFlowTheme
@@ -528,10 +518,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                     .containsKey(
                                                                         'Inter'),
                                                           ),
-                                                      cursorColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
+                                                      cursorColor: Colors.black,
                                                       validator: _model
                                                           .branchTextControllerValidator
                                                           .asValidator(context),
@@ -566,7 +553,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                     .graduationyearTextController,
                                                                 focusNode: _model
                                                                     .graduationyearFocusNode,
-                                                                autofocus: true,
+                                                                autofocus:
+                                                                    false,
                                                                 textCapitalization:
                                                                     TextCapitalization
                                                                         .words,
@@ -585,6 +573,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             'Inter',
+                                                                        color: Color(
+                                                                            0xFF616469),
                                                                         letterSpacing:
                                                                             0.0,
                                                                         useGoogleFonts:
@@ -598,6 +588,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                        color: Color(
+                                                                            0xFF616469),
                                                                         letterSpacing:
                                                                             0.0,
                                                                         useGoogleFonts:
@@ -622,9 +614,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                       OutlineInputBorder(
                                                                     borderSide:
                                                                         BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
+                                                                      color: Color(
+                                                                          0xFF443F9E),
                                                                       width:
                                                                           2.0,
                                                                     ),
@@ -650,9 +641,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                       OutlineInputBorder(
                                                                     borderSide:
                                                                         BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
+                                                                      color: Color(
+                                                                          0x00000000),
                                                                       width:
                                                                           2.0,
                                                                     ),
@@ -664,9 +654,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                       OutlineInputBorder(
                                                                     borderSide:
                                                                         BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
+                                                                      color: Color(
+                                                                          0x00000000),
                                                                       width:
                                                                           2.0,
                                                                     ),
@@ -710,9 +699,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                               'Inter'),
                                                                     ),
                                                                 cursorColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
+                                                                    Colors
+                                                                        .black,
                                                                 validator: _model
                                                                     .graduationyearTextControllerValidator
                                                                     .asValidator(
@@ -728,9 +716,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                 child: FaIcon(
                                                                   FontAwesomeIcons
                                                                       .graduationCap,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
+                                                                  color: Color(
+                                                                      0xFF124B99),
                                                                   size: 20.0,
                                                                 ),
                                                               ),
@@ -739,165 +726,253 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                         ),
                                                       ],
                                                     ),
-                                                    Wrap(
-                                                      spacing: 0.0,
-                                                      runSpacing: 0.0,
-                                                      alignment:
-                                                          WrapAlignment.start,
-                                                      crossAxisAlignment:
-                                                          WrapCrossAlignment
-                                                              .start,
-                                                      direction:
-                                                          Axis.horizontal,
-                                                      runAlignment:
-                                                          WrapAlignment.start,
-                                                      verticalDirection:
-                                                          VerticalDirection
-                                                              .down,
-                                                      clipBehavior: Clip.none,
-                                                      children: [
-                                                        Container(
-                                                          width:
-                                                              double.infinity,
-                                                          height: 50.0,
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Stack(
-                                                            children: [
-                                                              TextFormField(
-                                                                controller: _model
-                                                                    .linkedinTextController,
-                                                                focusNode: _model
-                                                                    .linkedinFocusNode,
-                                                                autofocus: true,
-                                                                textCapitalization:
-                                                                    TextCapitalization
-                                                                        .words,
-                                                                textInputAction:
-                                                                    TextInputAction
-                                                                        .next,
-                                                                obscureText:
-                                                                    false,
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  labelText:
-                                                                      'LinkedIn*',
-                                                                  labelStyle: FlutterFlowTheme.of(
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  20.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Wrap(
+                                                        spacing: 0.0,
+                                                        runSpacing: 0.0,
+                                                        alignment:
+                                                            WrapAlignment.start,
+                                                        crossAxisAlignment:
+                                                            WrapCrossAlignment
+                                                                .start,
+                                                        direction:
+                                                            Axis.horizontal,
+                                                        runAlignment:
+                                                            WrapAlignment.start,
+                                                        verticalDirection:
+                                                            VerticalDirection
+                                                                .down,
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          Container(
+                                                            width:
+                                                                double.infinity,
+                                                            height: 50.0,
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Stack(
+                                                              children: [
+                                                                TextFormField(
+                                                                  controller: _model
+                                                                      .linkedinTextController,
+                                                                  focusNode: _model
+                                                                      .linkedinFocusNode,
+                                                                  autofocus:
+                                                                      false,
+                                                                  textCapitalization:
+                                                                      TextCapitalization
+                                                                          .words,
+                                                                  textInputAction:
+                                                                      TextInputAction
+                                                                          .next,
+                                                                  obscureText:
+                                                                      false,
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    labelText:
+                                                                        'LinkedIn*',
+                                                                    labelStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Inter',
+                                                                          color:
+                                                                              Color(0xFF616469),
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey('Inter'),
+                                                                        ),
+                                                                    hintText:
+                                                                        'linkedin.com/in/xyz/',
+                                                                    hintStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                          color:
+                                                                              Color(0xFF616469),
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                        ),
+                                                                    errorStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).error,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                        ),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0xFF443F9E),
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                    ),
+                                                                    errorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0xFFFF0000),
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                    ),
+                                                                    focusedErrorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0xFFFF0000),
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                    ),
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor: (_model.linkedinFocusNode?.hasFocus ??
+                                                                            false)
+                                                                        ? FlutterFlowTheme.of(context)
+                                                                            .accent1
+                                                                        : FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                    contentPadding:
+                                                                        EdgeInsetsDirectional.fromSTEB(
+                                                                            50.0,
+                                                                            20.0,
+                                                                            16.0,
+                                                                            20.0),
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelLarge
+                                                                      .headlineSmall
                                                                       .override(
                                                                         fontFamily:
                                                                             'Inter',
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            16.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         useGoogleFonts:
                                                                             GoogleFonts.asMap().containsKey('Inter'),
                                                                       ),
-                                                                  hintText:
-                                                                      'linkedin.com/in/xyz/',
-                                                                  hintStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).labelMediumFamily,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
-                                                                      ),
-                                                                  errorStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .error,
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                      ),
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  errorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedErrorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  filled: true,
-                                                                  fillColor: (_model
-                                                                              .linkedinFocusNode
-                                                                              ?.hasFocus ??
-                                                                          false)
-                                                                      ? FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .accent1
-                                                                      : FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                  contentPadding:
-                                                                      EdgeInsetsDirectional.fromSTEB(
-                                                                          50.0,
-                                                                          20.0,
-                                                                          16.0,
-                                                                          20.0),
+                                                                  cursorColor:
+                                                                      Colors
+                                                                          .black,
+                                                                  validator: _model
+                                                                      .linkedinTextControllerValidator
+                                                                      .asValidator(
+                                                                          context),
                                                                 ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          18.0,
+                                                                          15.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: FaIcon(
+                                                                    FontAwesomeIcons
+                                                                        .linkedinIn,
+                                                                    color: Color(
+                                                                        0xFF124B99),
+                                                                    size: 20.0,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  20.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12.0),
+                                                          border: Border.all(
+                                                            color: Color(
+                                                                0xFF443F9E),
+                                                            width: 2.0,
+                                                          ),
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          7.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Areas of Interest',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .headlineSmall
+                                                                    .bodyMedium
                                                                     .override(
                                                                       fontFamily:
                                                                           'Inter',
@@ -907,158 +982,104 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                           16.0,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
                                                                               'Inter'),
                                                                     ),
-                                                                cursorColor:
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          30.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child:
+                                                                  FlutterFlowCheckboxGroup(
+                                                                options: [
+                                                                  'English Communication',
+                                                                  'Higher Education',
+                                                                  'Interview Skills',
+                                                                  'Entrepreneurship',
+                                                                  'Technical Guidance',
+                                                                  'Career Guidance'
+                                                                ],
+                                                                onChanged: (val) =>
+                                                                    setState(() =>
+                                                                        _model.interestOptionsValues =
+                                                                            val),
+                                                                controller: _model
+                                                                        .interestOptionsValueController ??=
+                                                                    FormFieldController<
+                                                                        List<
+                                                                            String>>(
+                                                                  [],
+                                                                ),
+                                                                activeColor:
                                                                     FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary,
-                                                                validator: _model
-                                                                    .linkedinTextControllerValidator
-                                                                    .asValidator(
-                                                                        context),
+                                                                checkColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .info,
+                                                                checkboxBorderColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                                unselectedTextStyle:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          fontSize:
+                                                                              16.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                        ),
+                                                                checkboxBorderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4.0),
+                                                                initialized:
+                                                                    _model.interestOptionsValues !=
+                                                                        null,
                                                               ),
-                                                              Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        18.0,
-                                                                        15.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                                child: FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .linkedinIn,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  size: 20.0,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  7.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Areas of Interest',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 16.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              useGoogleFonts:
-                                                                  GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          'Inter'),
                                                             ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  30.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child:
-                                                          FlutterFlowCheckboxGroup(
-                                                        options: [
-                                                          'English Communication',
-                                                          'Higher Education',
-                                                          'Interview Skills',
-                                                          'Entrepreneurship',
-                                                          'Technical Guidance',
-                                                          'Career Guidance'
-                                                        ],
-                                                        onChanged: (val) =>
-                                                            setState(() => _model
-                                                                    .interestOptionsValues =
-                                                                val),
-                                                        controller: _model
-                                                                .interestOptionsValueController ??=
-                                                            FormFieldController<
-                                                                List<String>>(
-                                                          [],
+                                                          ],
                                                         ),
-                                                        activeColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        checkColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .info,
-                                                        checkboxBorderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                        unselectedTextStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize:
-                                                                      16.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                        checkboxBorderRadius:
-                                                            BorderRadius
-                                                                .circular(4.0),
-                                                        initialized: _model
-                                                                .interestOptionsValues !=
-                                                            null,
                                                       ),
                                                     ),
                                                     Padding(
@@ -1074,7 +1095,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                             .statementTextController,
                                                         focusNode: _model
                                                             .statementFocusNode,
-                                                        autofocus: true,
+                                                        autofocus: false,
                                                         textCapitalization:
                                                             TextCapitalization
                                                                 .sentences,
@@ -1093,6 +1114,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                   .override(
                                                                     fontFamily:
                                                                         'Inter',
+                                                                    color: Color(
+                                                                        0xFF616469),
                                                                     letterSpacing:
                                                                         0.0,
                                                                     fontWeight:
@@ -1144,9 +1167,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                               OutlineInputBorder(
                                                             borderSide:
                                                                 BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
+                                                              color: Color(
+                                                                  0xFF443F9E),
                                                               width: 2.0,
                                                             ),
                                                             borderRadius:
@@ -1172,9 +1194,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                               OutlineInputBorder(
                                                             borderSide:
                                                                 BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
+                                                              color: Color(
+                                                                  0xFFFF0000),
                                                               width: 2.0,
                                                             ),
                                                             borderRadius:
@@ -1186,9 +1207,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                               OutlineInputBorder(
                                                             borderSide:
                                                                 BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
+                                                              color: Color(
+                                                                  0xFFFF0000),
                                                               width: 2.0,
                                                             ),
                                                             borderRadius:
@@ -1217,9 +1237,8 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                                       16.0),
                                                           prefixIcon: Icon(
                                                             Icons.query_stats,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: Color(
+                                                                0xFF124B99),
                                                           ),
                                                         ),
                                                         style:
@@ -1243,9 +1262,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                                         maxLines: 9,
                                                         minLines: 5,
                                                         cursorColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                                            Colors.black,
                                                         validator: _model
                                                             .statementTextControllerValidator
                                                             .asValidator(
@@ -1326,6 +1343,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                             .set(createAdminRequestsRecordData(
                                               userRef: currentUserReference,
                                               status: RequestState.PENDING,
+                                              createdTime: getCurrentTimestamp,
                                             ));
 
                                         context.pushNamed('WaitPage');
@@ -1387,6 +1405,7 @@ class _MenteeFormWidgetState extends State<MenteeFormWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Inter',
+                                  color: Color(0xFFFFF0000),
                                   letterSpacing: 0.0,
                                   useGoogleFonts:
                                       GoogleFonts.asMap().containsKey('Inter'),

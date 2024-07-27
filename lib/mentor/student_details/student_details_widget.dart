@@ -189,7 +189,7 @@ class _StudentDetailsWidgetState extends State<StudentDetailsWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Inter',
-                                      color: Colors.black,
+                                      color: Color(0xFF152A5E),
                                       fontSize: 17.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w800,
@@ -364,6 +364,16 @@ class _StudentDetailsWidgetState extends State<StudentDetailsWidget> {
                                       ),
                                     });
 
+                                    await widget!.menteeRef!.update({
+                                      ...mapToFirestore(
+                                        {
+                                          'acceptedMentors':
+                                              FieldValue.arrayUnion(
+                                                  [currentUserReference]),
+                                        },
+                                      ),
+                                    });
+
                                     await ChatsRecord.collection.doc().set({
                                       ...createChatsRecordData(
                                         lastMessage: 'Say Hi!',
@@ -492,16 +502,16 @@ class _StudentDetailsWidgetState extends State<StudentDetailsWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(3.0, 35.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 35.0, 0.0, 0.0),
                   child: FlutterFlowIconButton(
                     borderColor: Colors.transparent,
                     borderRadius: 30.0,
                     borderWidth: 0.0,
-                    buttonSize: 46.47,
+                    buttonSize: 40.0,
                     icon: Icon(
                       Icons.close_outlined,
                       color: Color(0xFFFF0000),
-                      size: 28.47,
+                      size: 20.0,
                     ),
                     onPressed: () async {
                       Navigator.pop(context);

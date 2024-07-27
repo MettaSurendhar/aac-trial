@@ -2,6 +2,7 @@ import '/admin/admin_settings/admin_settings_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/empty_list_widgets/no_requests_found/no_requests_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -48,7 +49,7 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF0A515C),
         drawer: Container(
           width: 362.0,
           child: Drawer(
@@ -60,56 +61,60 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
             ),
           ),
         ),
-        body: Stack(
-          children: [
-            Align(
-              alignment: AlignmentDirectional(0.0, 0.0),
-              child: Container(
-                constraints: BoxConstraints(
-                  maxWidth: 500.0,
-                ),
-                decoration: BoxDecoration(),
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, -0.83),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          icon: Icon(
-                            Icons.chevron_left_sharp,
-                            color: Color(0xFFFF0000),
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            context.safePop();
-                          },
-                        ),
-                      ),
-                      Text(
-                        'Requests yet to be approved',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              color: Colors.black,
-                              fontSize: 20.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                              useGoogleFonts:
-                                  GoogleFonts.asMap().containsKey('Inter'),
-                            ),
-                      ),
-                    ],
+        appBar: AppBar(
+          backgroundColor: Color(0xFF033FA4),
+          automaticallyImplyLeading: false,
+          leading: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                child: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 20.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: Colors.white,
+                    size: 30.0,
                   ),
+                  onPressed: () async {
+                    context.safePop();
+                  },
                 ),
               ),
-            ),
+            ],
+          ),
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                child: Text(
+                  'Requests to be approved',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).headlineMediumFamily,
+                        color: Colors.white,
+                        fontSize: 22.0,
+                        letterSpacing: 0.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).headlineMediumFamily),
+                      ),
+                ),
+              ),
+            ],
+          ),
+          actions: [],
+          centerTitle: false,
+          elevation: 2.0,
+        ),
+        body: Stack(
+          children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 130.0, 20.0, 70.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 70.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -142,6 +147,17 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                           }
                           List<AdminRequestsRecord>
                               listViewAdminRequestsRecordList = snapshot.data!;
+                          if (listViewAdminRequestsRecordList.isEmpty) {
+                            return Center(
+                              child: Container(
+                                width: 300.0,
+                                height: 200.0,
+                                child: NoRequestsFoundWidget(
+                                  message: 'No Requests yet',
+                                ),
+                              ),
+                            );
+                          }
 
                           return ListView.builder(
                             padding: EdgeInsets.zero,
@@ -210,33 +226,43 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                   children: [
                                                     FFButtonWidget(
                                                       onPressed: () async {
-                                                        context.pushNamed(
-                                                          'MentorProfileView',
-                                                          queryParameters: {
-                                                            'mentorDoc':
-                                                                serializeParam(
-                                                              profile1UsersRecord,
-                                                              ParamType
-                                                                  .Document,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            'mentorDoc':
+                                                        if (profile1UsersRecord
+                                                                .role ==
+                                                            'Mentor') {
+                                                          context.pushNamed(
+                                                            'MentorProfileView',
+                                                            queryParameters: {
+                                                              'mentorDoc':
+                                                                  serializeParam(
                                                                 profile1UsersRecord,
-                                                            kTransitionInfoKey:
-                                                                TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .leftToRight,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      300),
-                                                            ),
-                                                          },
-                                                        );
+                                                                ParamType
+                                                                    .Document,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              'mentorDoc':
+                                                                  profile1UsersRecord,
+                                                            },
+                                                          );
+                                                        } else {
+                                                          context.pushNamed(
+                                                            'MenteeProfileView',
+                                                            queryParameters: {
+                                                              'menteeDoc':
+                                                                  serializeParam(
+                                                                profile1UsersRecord,
+                                                                ParamType
+                                                                    .Document,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              'menteeDoc':
+                                                                  profile1UsersRecord,
+                                                            },
+                                                          );
+                                                        }
                                                       },
                                                       text: 'Profile',
                                                       options: FFButtonOptions(
@@ -244,9 +270,9 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    24.0,
+                                                                    12.0,
                                                                     0.0,
-                                                                    24.0,
+                                                                    12.0,
                                                                     0.0),
                                                         iconPadding:
                                                             EdgeInsetsDirectional
@@ -256,7 +282,7 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                                     0.0,
                                                                     0.0),
                                                         color:
-                                                            Color(0xFFE6E6E6),
+                                                            Color(0xFF213A77),
                                                         textStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -266,7 +292,7 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                                           context)
                                                                       .titleSmallFamily,
                                                                   color: Colors
-                                                                      .black,
+                                                                      .white,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   useGoogleFonts: GoogleFonts
@@ -309,9 +335,9 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    24.0,
+                                                                    12.0,
                                                                     0.0,
-                                                                    24.0,
+                                                                    12.0,
                                                                     0.0),
                                                         iconPadding:
                                                             EdgeInsetsDirectional
@@ -321,7 +347,7 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                                     0.0,
                                                                     0.0),
                                                         color:
-                                                            Color(0xFFFF0000),
+                                                            Color(0xFF09451C),
                                                         textStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -367,9 +393,9 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    24.0,
+                                                                    12.0,
                                                                     0.0,
-                                                                    24.0,
+                                                                    12.0,
                                                                     0.0),
                                                         iconPadding:
                                                             EdgeInsetsDirectional
@@ -379,7 +405,7 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                                     0.0,
                                                                     0.0),
                                                         color:
-                                                            Color(0xFFE6E6E6),
+                                                            Color(0xFF4F1111),
                                                         textStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -389,7 +415,7 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                                           context)
                                                                       .titleSmallFamily,
                                                                   color: Colors
-                                                                      .black,
+                                                                      .white,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   useGoogleFonts: GoogleFonts
@@ -524,9 +550,12 @@ class _ApprovalRequestsWidgetState extends State<ApprovalRequestsWidget> {
                                                                   fontFamily:
                                                                       'Inter',
                                                                   color: Color(
-                                                                      0xFF959595),
+                                                                      0xFF090E45),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                   useGoogleFonts: GoogleFonts
                                                                           .asMap()
                                                                       .containsKey(

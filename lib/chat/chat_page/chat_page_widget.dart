@@ -60,7 +60,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: Color(0xFF05112F),
             body: Center(
               child: SizedBox(
                 width: 50.0,
@@ -83,9 +83,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
               : FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: Colors.white,
+            backgroundColor: Color(0xFF05112F),
             appBar: AppBar(
-              backgroundColor: Color(0xFF241C5A),
+              backgroundColor: Color(0xFF033FA4),
               automaticallyImplyLeading: false,
               leading: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -271,8 +271,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                             maxWidth: 300.0,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                            color: Color(0xFF0B6A62),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
@@ -354,7 +353,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                             maxWidth: 300.0,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFB3D6D0),
+                                            color: Color(0xFFE6E6E6),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
@@ -446,7 +445,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                 Duration(milliseconds: 0),
                                 () => setState(() {}),
                               ),
-                              autofocus: true,
+                              autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
                                 hintText: 'Type your message here...',
@@ -463,29 +462,29 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Colors.black,
-                                    width: 2.0,
+                                    color: Colors.white,
+                                    width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.black,
-                                    width: 2.0,
+                                    width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.black,
-                                    width: 2.0,
+                                    width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.black,
-                                    width: 2.0,
+                                    width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
@@ -495,7 +494,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -512,7 +511,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                           borderRadius: 20.0,
                           borderWidth: 1.0,
                           buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).accent1,
+                          fillColor: Color(0xFFE6E6E6),
                           icon: FaIcon(
                             FontAwesomeIcons.calendarAlt,
                             color: Colors.black,
@@ -547,11 +546,12 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                           borderRadius: 20.0,
                           borderWidth: 1.0,
                           buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          disabledColor: Color(0xFF928686),
+                          fillColor: Color(0xFF079507),
+                          disabledColor: Color(0xFF079507),
+                          disabledIconColor: Colors.black,
                           icon: Icon(
                             Icons.send,
-                            color: Colors.white,
+                            color: Colors.black,
                             size: 24.0,
                           ),
                           onPressed: (_model.textController.text == null ||

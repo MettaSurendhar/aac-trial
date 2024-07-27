@@ -63,7 +63,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                             width: double.infinity,
                             height: 119.0,
                             decoration: BoxDecoration(
-                              color: Color(0xFF356BBC),
+                              color: Color(0xFF033FA4),
                             ),
                           ),
                         ),
@@ -181,6 +181,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                       width: double.infinity,
                                       height: 60.0,
                                       decoration: BoxDecoration(
+                                        color: Color(0xFF4D899C),
                                         boxShadow: [
                                           BoxShadow(
                                             blurRadius: 0.0,
@@ -194,8 +195,8 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         border: Border.all(
-                                          color: Colors.white,
-                                          width: 1.0,
+                                          color: Color(0xFF443F9E),
+                                          width: 2.0,
                                         ),
                                       ),
                                       child: Row(
@@ -214,7 +215,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                     .labelLarge
                                                     .override(
                                                       fontFamily: 'Inter',
-                                                      color: Color(0xFF6D6D6D),
+                                                      color: Colors.black,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -243,7 +244,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyLargeFamily,
-                                                          color: Colors.black,
+                                                          color: Colors.white,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -274,7 +275,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                     width: double.infinity,
                                     height: 60.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF1F4F8),
+                                      color: Color(0xFF4D899C),
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 0.0,
@@ -287,7 +288,8 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(8.0),
                                       border: Border.all(
-                                        color: Colors.white,
+                                        color: Color(0xFF443F9E),
+                                        width: 2.0,
                                       ),
                                     ),
                                     child: Row(
@@ -302,19 +304,20 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                     5.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Year of  Graduation',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelLarge
-                                                  .override(
-                                                    fontFamily: 'Inter',
-                                                    color: Color(0xFF6D6D6D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    useGoogleFonts:
-                                                        GoogleFonts.asMap()
-                                                            .containsKey(
-                                                                'Inter'),
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        color: Colors.black,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        useGoogleFonts:
+                                                            GoogleFonts.asMap()
+                                                                .containsKey(
+                                                                    'Inter'),
+                                                      ),
                                             ),
                                           ),
                                         ),
@@ -337,7 +340,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
-                                                        color: Colors.black,
+                                                        color: Colors.white,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -367,7 +370,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                     width: double.infinity,
                                     height: 100.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF1F4F8),
+                                      color: Color(0xFF4D899C),
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 0.0,
@@ -380,7 +383,8 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(8.0),
                                       border: Border.all(
-                                        color: Colors.white,
+                                        color: Color(0xFF443F9E),
+                                        width: 2.0,
                                       ),
                                     ),
                                     child: Padding(
@@ -402,6 +406,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                     .labelLarge
                                                     .override(
                                                       fontFamily: 'Inter',
+                                                      color: Colors.black,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -434,7 +439,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyMediumFamily,
-                                                        color: Colors.black,
+                                                        color: Colors.white,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -455,7 +460,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 16.0, 24.0, 24.0),
+                                    24.0, 16.0, 24.0, 0.0),
                                 child: Material(
                                   color: Colors.transparent,
                                   elevation: 2.0,
@@ -464,12 +469,11 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                   ),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 60.0,
                                     constraints: BoxConstraints(
                                       minHeight: 120.0,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF1F4F8),
+                                      color: Color(0xFF4D899C),
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 0.0,
@@ -498,7 +502,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                     .labelLarge
                                                     .override(
                                                       fontFamily: 'Inter',
-                                                      color: Color(0xFF6D6D6D),
+                                                      color: Colors.black,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -662,7 +666,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 30.0, 24.0, 0.0),
+                                    24.0, 40.0, 24.0, 0.0),
                                 child: Material(
                                   color: Colors.transparent,
                                   elevation: 2.0,
@@ -673,7 +677,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                     width: double.infinity,
                                     height: 60.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF1F4F8),
+                                      color: Color(0xFF4D899C),
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 0.0,
@@ -685,6 +689,10 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                         )
                                       ],
                                       borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: Color(0xFF443F9E),
+                                        width: 2.0,
+                                      ),
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -698,24 +706,25 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                     5.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Availability',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelLarge
-                                                  .override(
-                                                    fontFamily:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelLargeFamily,
-                                                    color: Color(0xFF6D6D6D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    useGoogleFonts: GoogleFonts
-                                                            .asMap()
-                                                        .containsKey(
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelLargeFamily),
-                                                  ),
+                                                                .labelLargeFamily,
+                                                        color: Colors.black,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLargeFamily),
+                                                      ),
                                             ),
                                           ),
                                         ),
@@ -742,7 +751,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
-                                                        color: Colors.black,
+                                                        color: Colors.white,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -772,8 +781,12 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                     width: double.infinity,
                                     height: 140.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF1F4F8),
+                                      color: Color(0xFF4D899C),
                                       borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: Color(0xFF443F9E),
+                                        width: 2.0,
+                                      ),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -794,7 +807,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                     .labelLarge
                                                     .override(
                                                       fontFamily: 'Inter',
-                                                      color: Color(0xFF6D6D6D),
+                                                      color: Colors.black,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -827,7 +840,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyMediumFamily,
-                                                        color: Colors.black,
+                                                        color: Colors.white,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -868,14 +881,14 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                       },
                                       text: 'Log Out',
                                       options: FFButtonOptions(
-                                        height: 40.0,
+                                        width: 190.0,
+                                        height: 50.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: Color(0xFFB21B00),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -883,6 +896,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmallFamily,
                                               color: Colors.white,
+                                              fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
@@ -929,7 +943,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                 children: [
                                   FFButtonWidget(
                                     onPressed: () async {
-                                      context.safePop();
+                                      context.goNamed('MentorHome');
                                     },
                                     text: '     Back',
                                     options: FFButtonOptions(
@@ -979,7 +993,7 @@ class _MentorProfileWidgetState extends State<MentorProfileWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Inter',
-                                      color: Color(0xFF0A84FF),
+                                      color: Color(0xFF0B1454),
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,

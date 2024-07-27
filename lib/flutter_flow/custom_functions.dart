@@ -44,3 +44,11 @@ List<String> addMenteeMentorNames(
   var res = [menteeName, mentorName];
   return res;
 }
+
+List<String> combineList(
+  List<String> requested,
+  List<String> activeMentors,
+) {
+  requested.addAll(activeMentors);
+  return requested;
+}

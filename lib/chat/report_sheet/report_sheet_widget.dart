@@ -120,7 +120,7 @@ class _ReportSheetWidgetState extends State<ReportSheetWidget>
                   maxWidth: 670.0,
                 ),
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  color: Colors.white,
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 3.0,
@@ -165,30 +165,6 @@ class _ReportSheetWidgetState extends State<ReportSheetWidget>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 4.0),
-                                            child: Text(
-                                              'Create Project',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMediumFamily),
-                                                      ),
-                                            ),
-                                          ),
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(

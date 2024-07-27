@@ -27,9 +27,15 @@ class AdminRequestsRecord extends FirestoreRecord {
   RequestState? get status => _status;
   bool hasStatus() => _status != null;
 
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
   void _initializeFields() {
     _userRef = snapshotData['user_ref'] as DocumentReference?;
     _status = deserializeEnum<RequestState>(snapshotData['status']);
+    _createdTime = snapshotData['created_time'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -69,11 +75,13 @@ class AdminRequestsRecord extends FirestoreRecord {
 Map<String, dynamic> createAdminRequestsRecordData({
   DocumentReference? userRef,
   RequestState? status,
+  DateTime? createdTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'user_ref': userRef,
       'status': status,
+      'created_time': createdTime,
     }.withoutNulls,
   );
 
@@ -86,12 +94,14 @@ class AdminRequestsRecordDocumentEquality
 
   @override
   bool equals(AdminRequestsRecord? e1, AdminRequestsRecord? e2) {
-    return e1?.userRef == e2?.userRef && e1?.status == e2?.status;
+    return e1?.userRef == e2?.userRef &&
+        e1?.status == e2?.status &&
+        e1?.createdTime == e2?.createdTime;
   }
 
   @override
   int hash(AdminRequestsRecord? e) =>
-      const ListEquality().hash([e?.userRef, e?.status]);
+      const ListEquality().hash([e?.userRef, e?.status, e?.createdTime]);
 
   @override
   bool isValidKey(Object? o) => o is AdminRequestsRecord;

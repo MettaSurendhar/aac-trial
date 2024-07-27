@@ -25,7 +25,11 @@ class MenteeFormModel extends FlutterFlowModel<MenteeFormWidget> {
   String? Function(BuildContext, String?)? fullNameTextControllerValidator;
   String? _fullNameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter the full name.';
+      return 'Field is required';
+    }
+
+    if (val.length > 30) {
+      return 'Exceeded maximum characters';
     }
 
     return null;
@@ -37,7 +41,7 @@ class MenteeFormModel extends FlutterFlowModel<MenteeFormWidget> {
   String? Function(BuildContext, String?)? branchTextControllerValidator;
   String? _branchTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter the branch.';
+      return 'Field is required';
     }
 
     return null;
@@ -52,6 +56,14 @@ class MenteeFormModel extends FlutterFlowModel<MenteeFormWidget> {
   FocusNode? linkedinFocusNode;
   TextEditingController? linkedinTextController;
   String? Function(BuildContext, String?)? linkedinTextControllerValidator;
+  String? _linkedinTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for interestOptions widget.
   FormFieldController<List<String>>? interestOptionsValueController;
   List<String>? get interestOptionsValues =>
@@ -75,6 +87,7 @@ class MenteeFormModel extends FlutterFlowModel<MenteeFormWidget> {
   void initState(BuildContext context) {
     fullNameTextControllerValidator = _fullNameTextControllerValidator;
     branchTextControllerValidator = _branchTextControllerValidator;
+    linkedinTextControllerValidator = _linkedinTextControllerValidator;
     statementTextControllerValidator = _statementTextControllerValidator;
   }
 

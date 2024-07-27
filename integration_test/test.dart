@@ -73,12 +73,10 @@ void main() async {
 
       await tester.pumpAndSettle();
       await tester.enterText(
-          find.byKey(ValueKey('signupEmail_ocw7')), 'msurendhar1@gmail.com');
-      await tester.enterText(
-          find.byKey(ValueKey('signupPassword_68yx')), 'Metta#19');
-      await tester.enterText(
-          find.byKey(ValueKey('signupPasswordConfirm_fbr3')), 'Metta#19');
-      await tester.tap(find.byKey(ValueKey('Button_07ya')));
+          find.byKey(ValueKey('UNDEFINED')), 'msurendhar1@gmail.com');
+      await tester.enterText(find.byKey(ValueKey('UNDEFINED')), 'Metta#19');
+      await tester.enterText(find.byKey(ValueKey('UNDEFINED')), 'Metta#19');
+      await tester.tap(find.byKey(ValueKey('UNDEFINED')));
       await tester.pumpAndSettle();
       expect(find.text('Mentor'), findsWidgets);
     });
@@ -87,7 +85,7 @@ void main() async {
       await tester.pumpWidget(MyApp());
 
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(ValueKey('Button_6lgt')));
+      await tester.tap(find.byKey(ValueKey('UNDEFINED')));
       await tester.pumpAndSettle();
       expect(find.text('Log in'), findsWidgets);
     });
@@ -96,7 +94,7 @@ void main() async {
       await tester.pumpWidget(MyApp());
 
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(ValueKey('Button_xjlv')));
+      await tester.tap(find.byKey(ValueKey('UNDEFINED')));
       await tester.pumpAndSettle();
       expect(find.text('Create an account'), findsWidgets);
     });

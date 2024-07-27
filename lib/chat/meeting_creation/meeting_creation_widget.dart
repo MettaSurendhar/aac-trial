@@ -109,7 +109,7 @@ class _MeetingCreationWidgetState extends State<MeetingCreationWidget>
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).accent4,
+          color: Color(0xFF05112F),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,

@@ -144,19 +144,20 @@ class _AdminSettingsWidgetState extends State<AdminSettingsWidget> {
                             },
                             text: 'Logout',
                             options: FFButtonOptions(
-                              width: 120.0,
+                              width: 220.0,
                               height: 50.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFFE6E6E6),
+                              color: Color(0xFFC20707),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .titleSmallFamily,
-                                    color: Color(0xFFFF0000),
+                                    color: Colors.white,
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(

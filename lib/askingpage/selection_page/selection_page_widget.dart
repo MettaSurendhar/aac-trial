@@ -43,7 +43,7 @@ class _SelectionPageWidgetState extends State<SelectionPageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF082E64),
         body: SafeArea(
           top: true,
           child: wrapWithModel(

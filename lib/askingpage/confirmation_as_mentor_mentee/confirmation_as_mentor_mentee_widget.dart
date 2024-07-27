@@ -55,11 +55,15 @@ class _ConfirmationAsMentorMenteeWidgetState
           maxWidth: 500.0,
         ),
         decoration: BoxDecoration(
+          color: Color(0xFF7BA5A4),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
+          ),
+          border: Border.all(
+            color: Color(0xFF7BA5A4),
           ),
         ),
         child: Column(
@@ -72,7 +76,7 @@ class _ConfirmationAsMentorMenteeWidgetState
                   width: 430.0,
                   height: 300.0,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xFF7BA5A4),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
@@ -80,7 +84,7 @@ class _ConfirmationAsMentorMenteeWidgetState
                       topRight: Radius.circular(20.0),
                     ),
                     border: Border.all(
-                      color: Colors.white,
+                      color: Color(0xFF7BA5A4),
                     ),
                   ),
                   child: Stack(
@@ -97,7 +101,7 @@ class _ConfirmationAsMentorMenteeWidgetState
                                 borderWidth: 1.0,
                                 buttonSize: 61.0,
                                 icon: Icon(
-                                  Icons.cancel,
+                                  Icons.exit_to_app_rounded,
                                   color: Colors.black,
                                   size: 34.0,
                                 ),
@@ -125,7 +129,7 @@ class _ConfirmationAsMentorMenteeWidgetState
                                     color: Colors.black,
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w800,
+                                    fontWeight: FontWeight.bold,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey('Inter'),
                                   ),
@@ -145,9 +149,10 @@ class _ConfirmationAsMentorMenteeWidgetState
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Inter',
-                                    color: Color(0xFFFF0000),
-                                    fontSize: 20.0,
+                                    color: Color(0xFF1B144F),
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey('Inter'),
                                   ),
@@ -183,7 +188,7 @@ class _ConfirmationAsMentorMenteeWidgetState
                               },
                               text: 'YES, Proceed',
                               icon: Icon(
-                                Icons.login_rounded,
+                                Icons.rocket_launch_sharp,
                                 size: 25.0,
                               ),
                               options: FFButtonOptions(

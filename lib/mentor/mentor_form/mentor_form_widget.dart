@@ -72,7 +72,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(100.0),
             child: AppBar(
-              backgroundColor: Color(0xFFE6E6E6),
+              backgroundColor: Color(0xFF033FA4),
               automaticallyImplyLeading: false,
               title: Align(
                 alignment: AlignmentDirectional(0.0, 0.0),
@@ -89,14 +89,31 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 8.0),
+                            child: FlutterFlowIconButton(
+                              borderRadius: 12.0,
+                              borderWidth: 3.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.white,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                context.safePop();
+                              },
+                            ),
+                          ),
                           Text(
-                            'Mentor Registration Form',
+                            ' Mentor Registration Form',
                             style: FlutterFlowTheme.of(context)
                                 .headlineMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .headlineMediumFamily,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: 24.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -104,23 +121,6 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .headlineMediumFamily),
                                 ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 12.0, 8.0),
-                            child: FlutterFlowIconButton(
-                              borderRadius: 12.0,
-                              borderWidth: 3.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                Icons.close_rounded,
-                                color: Color(0xFFFF0000),
-                                size: 24.0,
-                              ),
-                              onPressed: () async {
-                                context.safePop();
-                              },
-                            ),
                           ),
                         ],
                       ),
@@ -199,7 +199,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                               .fullNameTextController,
                                                           focusNode: _model
                                                               .fullNameFocusNode,
-                                                          autofocus: true,
+                                                          autofocus: false,
                                                           textCapitalization:
                                                               TextCapitalization
                                                                   .words,
@@ -218,6 +218,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                     .override(
                                                                       fontFamily:
                                                                           'Inter',
+                                                                      color: Color(
+                                                                          0xFF616469),
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
@@ -263,9 +265,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                 OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
+                                                                color: Color(
+                                                                    0xFF443F9E),
                                                                 width: 2.0,
                                                               ),
                                                               borderRadius:
@@ -337,7 +338,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                               Icons
                                                                   .person_sharp,
                                                               color: Color(
-                                                                  0xFF57636C),
+                                                                  0xFF124B99),
                                                             ),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -399,7 +400,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                         _model
                                                                             .yearGradFocusNode,
                                                                     autofocus:
-                                                                        true,
+                                                                        false,
                                                                     textCapitalization:
                                                                         TextCapitalization
                                                                             .words,
@@ -418,6 +419,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                           .override(
                                                                             fontFamily:
                                                                                 'Inter',
+                                                                            color:
+                                                                                Color(0xFF616469),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             useGoogleFonts:
@@ -454,7 +457,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                         borderSide:
                                                                             BorderSide(
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                              Color(0xFF443F9E),
                                                                           width:
                                                                               2.0,
                                                                         ),
@@ -543,9 +546,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                         FaIcon(
                                                                       FontAwesomeIcons
                                                                           .graduationCap,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
+                                                                      color: Color(
+                                                                          0xFF124B99),
                                                                       size:
                                                                           20.0,
                                                                     ),
@@ -560,7 +562,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                               .branchTextController,
                                                           focusNode: _model
                                                               .branchFocusNode,
-                                                          autofocus: true,
+                                                          autofocus: false,
                                                           textCapitalization:
                                                               TextCapitalization
                                                                   .words,
@@ -579,6 +581,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                     .override(
                                                                       fontFamily:
                                                                           'Inter',
+                                                                      color: Color(
+                                                                          0xFF616469),
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
@@ -624,9 +628,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                 OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
+                                                                color: Color(
+                                                                    0xFF443F9E),
                                                                 width: 2.0,
                                                               ),
                                                               borderRadius:
@@ -698,7 +701,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                               Icons
                                                                   .psychology_sharp,
                                                               color: Color(
-                                                                  0xFF57636C),
+                                                                  0xFF124B99),
                                                             ),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -760,7 +763,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                         _model
                                                                             .linkedInFocusNode,
                                                                     autofocus:
-                                                                        true,
+                                                                        false,
                                                                     textCapitalization:
                                                                         TextCapitalization
                                                                             .words,
@@ -772,13 +775,15 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                     decoration:
                                                                         InputDecoration(
                                                                       labelText:
-                                                                          'LinkedIn',
+                                                                          'LinkedIn*',
                                                                       labelStyle: FlutterFlowTheme.of(
                                                                               context)
                                                                           .labelLarge
                                                                           .override(
                                                                             fontFamily:
                                                                                 'Inter',
+                                                                            color:
+                                                                                Color(0xFF616469),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             useGoogleFonts:
@@ -792,6 +797,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                           .override(
                                                                             fontFamily:
                                                                                 'Inter',
+                                                                            color:
+                                                                                Color(0xFF616469),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             useGoogleFonts:
@@ -817,7 +824,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                         borderSide:
                                                                             BorderSide(
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                              Color(0xFF443F9E),
                                                                           width:
                                                                               2.0,
                                                                         ),
@@ -906,9 +913,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                         FaIcon(
                                                                       FontAwesomeIcons
                                                                           .linkedinIn,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
+                                                                      color: Color(
+                                                                          0xFF124B99),
                                                                       size:
                                                                           20.0,
                                                                     ),
@@ -918,254 +924,284 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                             ),
                                                           ],
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'Areas of Interest',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  color: Colors
-                                                                      .black,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          'Inter'),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      20.0,
-                                                                      10.0,
-                                                                      0.0,
-                                                                      15.0),
-                                                          child:
-                                                              FlutterFlowCheckboxGroup(
-                                                            options: [
-                                                              'English Communication',
-                                                              'Higher Education',
-                                                              'Interview Skills',
-                                                              'Entrepreneurship',
-                                                              'Technical Guidance',
-                                                              'Career Guidance'
-                                                            ],
-                                                            onChanged: (val) =>
-                                                                setState(() =>
-                                                                    _model.interestOptionsValues =
-                                                                        val),
-                                                            controller: _model
-                                                                    .interestOptionsValueController ??=
-                                                                FormFieldController<
-                                                                    List<
-                                                                        String>>(
-                                                              [],
-                                                            ),
-                                                            activeColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                            checkColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
-                                                            checkboxBorderColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Inter',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              'Inter'),
-                                                                    ),
-                                                            unselectedTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyLargeFamily,
-                                                                      color: Colors
-                                                                          .black,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyLargeFamily),
-                                                                    ),
-                                                            checkboxBorderRadius:
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        4.0),
-                                                            initialized: _model
-                                                                    .interestOptionsValues !=
-                                                                null,
+                                                                        12.0),
+                                                            border: Border.all(
+                                                              color: Color(
+                                                                  0xFF443F9E),
+                                                              width: 2.0,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'Availability',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
+                                                          child: Stack(
+                                                            children: [
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Text(
+                                                                    'Areas of Interest',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Inter',
+                                                                          color:
+                                                                              Colors.black,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey('Inter'),
+                                                                        ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        25.0,
+                                                                        0.0,
+                                                                        15.0),
+                                                                child:
+                                                                    FlutterFlowCheckboxGroup(
+                                                                  options: [
+                                                                    'English Communication',
+                                                                    'Higher Education',
+                                                                    'Interview Skills',
+                                                                    'Entrepreneurship',
+                                                                    'Technical Guidance',
+                                                                    'Career Guidance'
+                                                                  ],
+                                                                  onChanged: (val) =>
+                                                                      setState(() =>
+                                                                          _model.interestOptionsValues =
+                                                                              val),
+                                                                  controller: _model
+                                                                          .interestOptionsValueController ??=
+                                                                      FormFieldController<
+                                                                          List<
+                                                                              String>>(
+                                                                    [],
+                                                                  ),
+                                                                  activeColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                  checkColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .info,
+                                                                  checkboxBorderColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                  textStyle: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyLargeFamily,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyLargeFamily),
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Inter',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey('Inter'),
+                                                                      ),
+                                                                  unselectedTextStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                                        color: Colors
+                                                                            .black,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                      ),
+                                                                  checkboxBorderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4.0),
+                                                                  initialized:
+                                                                      _model.interestOptionsValues !=
+                                                                          null,
                                                                 ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      25.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0),
-                                                          child:
-                                                              FlutterFlowChoiceChips(
-                                                            options: [
-                                                              ChipData('Yes'),
-                                                              ChipData('No')
+                                                        Container(
+                                                          width: 250.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                            border: Border.all(
+                                                              color: Color(
+                                                                  0xFF443F9E),
+                                                              width: 2.0,
+                                                            ),
+                                                          ),
+                                                          child: Stack(
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10.0,
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: Text(
+                                                                  'Availability',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                                        color: Colors
+                                                                            .black,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        25.0,
+                                                                        35.0,
+                                                                        0.0,
+                                                                        15.0),
+                                                                child:
+                                                                    FlutterFlowChoiceChips(
+                                                                  options: [
+                                                                    ChipData(
+                                                                        'Yes'),
+                                                                    ChipData(
+                                                                        'No')
+                                                                  ],
+                                                                  onChanged: (val) =>
+                                                                      setState(() =>
+                                                                          _model.availabilityOptionsValue =
+                                                                              val?.firstOrNull),
+                                                                  selectedChipStyle:
+                                                                      ChipStyle(
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                    textStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                        ),
+                                                                    iconColor: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    iconSize:
+                                                                        18.0,
+                                                                    labelPadding:
+                                                                        EdgeInsetsDirectional.fromSTEB(
+                                                                            30.0,
+                                                                            7.0,
+                                                                            30.0,
+                                                                            7.0),
+                                                                    elevation:
+                                                                        0.0,
+                                                                    borderWidth:
+                                                                        2.0,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                  ),
+                                                                  unselectedChipStyle:
+                                                                      ChipStyle(
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                    textStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                        ),
+                                                                    iconColor: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    iconSize:
+                                                                        18.0,
+                                                                    labelPadding:
+                                                                        EdgeInsetsDirectional.fromSTEB(
+                                                                            30.0,
+                                                                            7.0,
+                                                                            30.0,
+                                                                            7.0),
+                                                                    elevation:
+                                                                        0.0,
+                                                                    borderWidth:
+                                                                        2.0,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                  ),
+                                                                  chipSpacing:
+                                                                      12.0,
+                                                                  rowSpacing:
+                                                                      12.0,
+                                                                  multiselect:
+                                                                      false,
+                                                                  alignment:
+                                                                      WrapAlignment
+                                                                          .start,
+                                                                  controller: _model
+                                                                          .availabilityOptionsValueController ??=
+                                                                      FormFieldController<
+                                                                          List<
+                                                                              String>>(
+                                                                    [],
+                                                                  ),
+                                                                  wrapped: true,
+                                                                ),
+                                                              ),
                                                             ],
-                                                            onChanged: (val) =>
-                                                                setState(() => _model
-                                                                        .availabilityOptionsValue =
-                                                                    val?.firstOrNull),
-                                                            selectedChipStyle:
-                                                                ChipStyle(
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                      ),
-                                                              iconColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              iconSize: 18.0,
-                                                              labelPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          30.0,
-                                                                          7.0,
-                                                                          30.0,
-                                                                          7.0),
-                                                              elevation: 0.0,
-                                                              borderWidth: 2.0,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                            ),
-                                                            unselectedChipStyle:
-                                                                ChipStyle(
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                      ),
-                                                              iconColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              iconSize: 18.0,
-                                                              labelPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          30.0,
-                                                                          7.0,
-                                                                          30.0,
-                                                                          7.0),
-                                                              elevation: 0.0,
-                                                              borderWidth: 2.0,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                            ),
-                                                            chipSpacing: 12.0,
-                                                            rowSpacing: 12.0,
-                                                            multiselect: false,
-                                                            alignment:
-                                                                WrapAlignment
-                                                                    .start,
-                                                            controller: _model
-                                                                    .availabilityOptionsValueController ??=
-                                                                FormFieldController<
-                                                                    List<
-                                                                        String>>(
-                                                              [],
-                                                            ),
-                                                            wrapped: true,
                                                           ),
                                                         ),
                                                         TextFormField(
@@ -1173,7 +1209,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                               .statementTextController,
                                                           focusNode: _model
                                                               .statementFocusNode,
-                                                          autofocus: true,
+                                                          autofocus: false,
                                                           textCapitalization:
                                                               TextCapitalization
                                                                   .sentences,
@@ -1190,6 +1226,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                       fontFamily:
                                                                           FlutterFlowTheme.of(context)
                                                                               .labelLargeFamily,
+                                                                      color: Color(
+                                                                          0xFF616469),
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
@@ -1237,9 +1275,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                                 OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
+                                                                color: Color(
+                                                                    0xFF443F9E),
                                                                 width: 2.0,
                                                               ),
                                                               borderRadius:
@@ -1310,7 +1347,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                             prefixIcon: Icon(
                                                               Icons.query_stats,
                                                               color: Color(
-                                                                  0xFF57636C),
+                                                                  0xFF124B99),
                                                             ),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -1431,6 +1468,8 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                                                         currentUserReference,
                                                     status:
                                                         RequestState.PENDING,
+                                                    createdTime:
+                                                        getCurrentTimestamp,
                                                   ));
 
                                               context.goNamed('WaitPage');
@@ -1498,6 +1537,7 @@ class _MentorFormWidgetState extends State<MentorFormWidget> {
                               .labelMedium
                               .override(
                                 fontFamily: 'Inter',
+                                color: Color(0xFFF00000),
                                 letterSpacing: 0.0,
                                 useGoogleFonts:
                                     GoogleFonts.asMap().containsKey('Inter'),

@@ -133,14 +133,16 @@ class _MentorSettingsWidgetState extends State<MentorSettingsWidget> {
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFFFF0000),
+                              color: Color(0xFF2E1676),
                               textStyle: FlutterFlowTheme.of(context)
                                   .labelSmall
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .labelSmallFamily,
                                     color: Colors.white,
+                                    fontSize: 16.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -151,7 +153,7 @@ class _MentorSettingsWidgetState extends State<MentorSettingsWidget> {
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
                         ),
@@ -272,19 +274,20 @@ class _MentorSettingsWidgetState extends State<MentorSettingsWidget> {
                               },
                               text: 'Logout',
                               options: FFButtonOptions(
-                                width: 120.0,
+                                width: 220.0,
                                 height: 50.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: Color(0xFFE6E6E6),
+                                color: Color(0xFFC20707),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .titleSmallFamily,
-                                      color: Color(0xFFFF0000),
+                                      color: Colors.white,
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -301,72 +304,6 @@ class _MentorSettingsWidgetState extends State<MentorSettingsWidget> {
                             ),
                           ),
                         ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            290.0, 397.0, 0.0, 0.0),
-                        child: Container(
-                          width: 31.0,
-                          height: 19.0,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFD9D9D9),
-                            borderRadius: BorderRadius.circular(8.0),
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: Text(
-                            '8',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: Colors.black,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            290.0, 471.0, 0.0, 0.0),
-                        child: Container(
-                          width: 31.0,
-                          height: 19.0,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFD9D9D9),
-                            borderRadius: BorderRadius.circular(8.0),
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: Text(
-                            '8',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: Colors.black,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
-                          ),
-                        ),
                       ),
                     ],
                   ),
@@ -411,8 +348,16 @@ class _MentorSettingsWidgetState extends State<MentorSettingsWidget> {
                             color: Color(0xFFFF0000),
                             size: 24.0,
                           ),
-                          onPressed: () {
-                            print('MessageRightIcon pressed ...');
+                          onPressed: () async {
+                            context.pushNamed(
+                              'chat_main_mentor',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                ),
+                              },
+                            );
                           },
                         ),
                       ),

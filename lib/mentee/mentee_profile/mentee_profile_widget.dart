@@ -68,7 +68,7 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                           width: double.infinity,
                           height: 119.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFF356BBC),
+                            color: Color(0xFF033FA4),
                           ),
                         ),
                       ),
@@ -235,7 +235,7 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                               children: [
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    context.safePop();
+                                    context.goNamed('MenteeHome');
                                   },
                                   text: '     Back',
                                   options: FFButtonOptions(
@@ -284,7 +284,7 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Inter',
-                                    color: Color(0xFF0A84FF),
+                                    color: Color(0xFF0B1454),
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
@@ -365,21 +365,12 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                       width: double.infinity,
                                       height: 60.0,
                                       decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 0.0,
-                                            color: Color(0xFFF1F4F8),
-                                            offset: Offset(
-                                              0.0,
-                                              1.0,
-                                            ),
-                                          )
-                                        ],
+                                        color: Color(0xFF4D899C),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         border: Border.all(
-                                          color: Colors.white,
-                                          width: 1.0,
+                                          color: Color(0xFF443F9E),
+                                          width: 2.0,
                                         ),
                                       ),
                                       child: Row(
@@ -398,6 +389,7 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                     .labelLarge
                                                     .override(
                                                       fontFamily: 'Inter',
+                                                      color: Colors.black,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -426,7 +418,8 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyLargeFamily,
-                                                          color: Colors.black,
+                                                          color:
+                                                              Color(0xFFE6E6E6),
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -456,21 +449,12 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                       width: double.infinity,
                                       height: 60.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFF1F4F8),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 0.0,
-                                            color: Color(0xFFF1F4F8),
-                                            offset: Offset(
-                                              0.0,
-                                              1.0,
-                                            ),
-                                          )
-                                        ],
+                                        color: Color(0xFF4D899C),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         border: Border.all(
-                                          color: Colors.white,
+                                          color: Color(0xFF443F9E),
+                                          width: 2.0,
                                         ),
                                       ),
                                       child: Row(
@@ -489,6 +473,7 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                     .labelLarge
                                                     .override(
                                                       fontFamily: 'Inter',
+                                                      color: Colors.black,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -519,7 +504,8 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyLargeFamily,
-                                                          color: Colors.black,
+                                                          color:
+                                                              Color(0xFFE6E6E6),
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -549,21 +535,12 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                       width: double.infinity,
                                       height: 100.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFF1F4F8),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 0.0,
-                                            color: Color(0xFFF1F4F8),
-                                            offset: Offset(
-                                              0.0,
-                                              1.0,
-                                            ),
-                                          )
-                                        ],
+                                        color: Color(0xFF4D899C),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         border: Border.all(
-                                          color: Colors.white,
+                                          color: Color(0xFF443F9E),
+                                          width: 2.0,
                                         ),
                                       ),
                                       child: Padding(
@@ -586,6 +563,7 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                       .labelLarge
                                                       .override(
                                                         fontFamily: 'Inter',
+                                                        color: Colors.black,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -618,7 +596,8 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyMediumFamily,
-                                                          color: Colors.black,
+                                                          color:
+                                                              Color(0xFFE6E6E6),
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -660,19 +639,13 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                               maxHeight: 200.0,
                                             ),
                                             decoration: BoxDecoration(
-                                              color: Color(0xFFF1F4F8),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 0.0,
-                                                  color: Color(0xFFF1F4F8),
-                                                  offset: Offset(
-                                                    0.0,
-                                                    1.0,
-                                                  ),
-                                                )
-                                              ],
+                                              color: Color(0xFF4D899C),
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color: Color(0xFF443F9E),
+                                                width: 2.0,
+                                              ),
                                             ),
                                             child: Stack(
                                               children: [
@@ -703,9 +676,8 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMediumFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
+                                                                color: Colors
+                                                                    .black,
                                                                 fontSize: 16.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -739,8 +711,8 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      20.0,
-                                                                      0.0,
+                                                                      10.0,
+                                                                      5.0,
                                                                       0.0,
                                                                       0.0),
                                                           child:
@@ -762,8 +734,8 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                               selectedChipStyle:
                                                                   ChipStyle(
                                                                 backgroundColor:
-                                                                    Color(
-                                                                        0x0FFFFFFF),
+                                                                    Colors
+                                                                        .white,
                                                                 textStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -877,9 +849,13 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                       width: double.infinity,
                                       height: 140.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFF1F4F8),
+                                        color: Color(0xFF4D899C),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
+                                        border: Border.all(
+                                          color: Color(0xFF443F9E),
+                                          width: 2.0,
+                                        ),
                                       ),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -901,6 +877,7 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                       .labelLarge
                                                       .override(
                                                         fontFamily: 'Inter',
+                                                        color: Colors.black,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -933,7 +910,8 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyMediumFamily,
-                                                          color: Colors.black,
+                                                          color:
+                                                              Color(0xFFE6E6E6),
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -967,14 +945,14 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                     },
                                     text: 'Log Out',
                                     options: FFButtonOptions(
-                                      height: 40.0,
+                                      width: 190.0,
+                                      height: 50.0,
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      color: Color(0xFFB21B00),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -982,6 +960,7 @@ class _MenteeProfileWidgetState extends State<MenteeProfileWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmallFamily,
                                             color: Colors.white,
+                                            fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(

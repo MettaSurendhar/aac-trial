@@ -60,6 +60,14 @@ class MentorFormModel extends FlutterFlowModel<MentorFormWidget> {
   FocusNode? linkedInFocusNode;
   TextEditingController? linkedInTextController;
   String? Function(BuildContext, String?)? linkedInTextControllerValidator;
+  String? _linkedInTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for interestOptions widget.
   FormFieldController<List<String>>? interestOptionsValueController;
   List<String>? get interestOptionsValues =>
@@ -90,6 +98,7 @@ class MentorFormModel extends FlutterFlowModel<MentorFormWidget> {
     fullNameTextControllerValidator = _fullNameTextControllerValidator;
     yearGradTextControllerValidator = _yearGradTextControllerValidator;
     branchTextControllerValidator = _branchTextControllerValidator;
+    linkedInTextControllerValidator = _linkedInTextControllerValidator;
     statementTextControllerValidator = _statementTextControllerValidator;
   }
 

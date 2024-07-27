@@ -1,4 +1,5 @@
 import '/admin/admin_settings/admin_settings_widget.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -46,7 +47,7 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0xFF0A515C),
           drawer: Container(
             width: 370.0,
             child: Drawer(
@@ -58,13 +59,55 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
               ),
             ),
           ),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            automaticallyImplyLeading: false,
+            title: Container(
+              decoration: BoxDecoration(),
+              child: Stack(
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                        child: Text(
+                          'Overview',
+                          style: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineMediumFamily,
+                                color: Colors.black,
+                                fontSize: 26.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.bold,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .headlineMediumFamily),
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            actions: [],
+            centerTitle: true,
+            elevation: 2.0,
+          ),
           body: Align(
             alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
               constraints: BoxConstraints(
                 maxWidth: 500.0,
               ),
-              decoration: BoxDecoration(),
+              decoration: BoxDecoration(
+                color: Color(0xFF0A515C),
+              ),
               child: Stack(
                 children: [
                   Column(
@@ -79,8 +122,7 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
                               Container(
                                 width: 400.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: Color(0xFF0A515C),
                                 ),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -92,34 +134,6 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Overview',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  color: Colors.black,
-                                                  fontSize: 24.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
-                                          ),
-                                        ],
-                                      ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 20.0, 0.0),
@@ -170,7 +184,7 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
                                                     ),
                                                     Flexible(
                                                       child: Text(
-                                                        'Total Active Users',
+                                                        'Users - Mentors',
                                                         textAlign:
                                                             TextAlign.start,
                                                         style:
@@ -211,11 +225,47 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
                                                         CrossAxisAlignment
                                                             .center,
                                                     children: [
-                                                      Text(
-                                                        '10',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                      FutureBuilder<int>(
+                                                        future:
+                                                            queryUsersRecordCount(
+                                                          queryBuilder:
+                                                              (usersRecord) =>
+                                                                  usersRecord
+                                                                      .where(
+                                                            'role',
+                                                            isEqualTo: 'Mentor',
+                                                          ),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          int textCount =
+                                                              snapshot.data!;
+
+                                                          return Text(
+                                                            textCount
+                                                                .toString(),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily: FlutterFlowTheme.of(
@@ -233,11 +283,22 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .bodyMediumFamily),
                                                                 ),
+                                                          );
+                                                        },
                                                       ),
                                                       FFButtonWidget(
                                                         onPressed: () async {
                                                           context.pushNamed(
-                                                              'AdminUserManagement');
+                                                            'AdminUserManagement',
+                                                            queryParameters: {
+                                                              'role':
+                                                                  serializeParam(
+                                                                'Mentor',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
                                                         },
                                                         text: 'View',
                                                         options:
@@ -341,14 +402,14 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
                                                                   0.0,
                                                                   0.0),
                                                       child: Icon(
-                                                        Icons.calendar_month,
+                                                        Icons.groups_sharp,
                                                         color: Colors.black,
                                                         size: 30.0,
                                                       ),
                                                     ),
                                                     Flexible(
                                                       child: Text(
-                                                        'New Signups',
+                                                        'Users - Mentees',
                                                         textAlign:
                                                             TextAlign.start,
                                                         style:
@@ -373,116 +434,150 @@ class _AdminHomeWidgetState extends State<AdminHomeWidget> {
                                                                 ),
                                                       ),
                                                     ),
-                                                    Text(
-                                                      'in last 7 days',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                color: Colors
-                                                                    .black,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
                                                   ],
                                                 ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      '10',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 36.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 5.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      FutureBuilder<int>(
+                                                        future:
+                                                            queryUsersRecordCount(
+                                                          queryBuilder:
+                                                              (usersRecord) =>
+                                                                  usersRecord
+                                                                      .where(
+                                                            'role',
+                                                            isEqualTo: 'Mentee',
+                                                          ),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
                                                               ),
-                                                    ),
-                                                    FFButtonWidget(
-                                                      onPressed: () {
-                                                        print(
-                                                            'Button pressed ...');
-                                                      },
-                                                      text: 'View',
-                                                      options: FFButtonOptions(
-                                                        height: 20.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .info,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
+                                                            );
+                                                          }
+                                                          int textCount =
+                                                              snapshot.data!;
+
+                                                          return Text(
+                                                            textCount
+                                                                .toString(),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleSmallFamily,
+                                                                      .bodyMediumFamily,
                                                                   color: Colors
                                                                       .black,
+                                                                  fontSize:
+                                                                      36.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   useGoogleFonts: GoogleFonts
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily),
+                                                                              .bodyMediumFamily),
                                                                 ),
-                                                        elevation: 0.0,
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
+                                                          );
+                                                        },
                                                       ),
-                                                    ),
-                                                  ],
+                                                      FFButtonWidget(
+                                                        onPressed: () async {
+                                                          context.pushNamed(
+                                                            'AdminUserManagement',
+                                                            queryParameters: {
+                                                              'role':
+                                                                  serializeParam(
+                                                                'Mentee',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        },
+                                                        text: 'View',
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 20.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .info,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                  ),
+                                                          elevation: 0.0,
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),

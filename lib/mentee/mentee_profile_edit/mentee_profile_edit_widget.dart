@@ -1,12 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
+import '/chat/change_photo/change_photo_widget.dart';
 import '/flutter_flow/flutter_flow_checkbox_group.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -100,7 +99,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                   width: 430.0,
                                   height: 119.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFF356BBC),
+                                    color: Color(0xFF033FA4),
                                   ),
                                 ),
                               ),
@@ -121,19 +120,16 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                       height: 200.0,
                                       decoration: BoxDecoration(
                                         color: Colors.transparent,
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: Image.network(
-                                            _model.uploadedFileUrl,
-                                          ).image,
-                                        ),
                                       ),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.network(
-                                            currentUserPhoto,
+                                            valueOrDefault<String>(
+                                              currentUserPhoto,
+                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/ask-a-cegian-6q7f9f/assets/3l034mi77mah/Group_(1).svg',
+                                            ),
                                             width: 300.0,
                                             height: 200.0,
                                             fit: BoxFit.cover,
@@ -226,64 +222,31 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
                                   context: context,
-                                  allowPhoto: true,
-                                );
-                                if (selectedMedia != null &&
-                                    selectedMedia.every((m) =>
-                                        validateFileFormat(
-                                            m.storagePath, context))) {
-                                  setState(() => _model.isDataUploading = true);
-                                  var selectedUploadedFiles =
-                                      <FFUploadedFile>[];
-
-                                  var downloadUrls = <String>[];
-                                  try {
-                                    selectedUploadedFiles = selectedMedia
-                                        .map((m) => FFUploadedFile(
-                                              name:
-                                                  m.storagePath.split('/').last,
-                                              bytes: m.bytes,
-                                              height: m.dimensions?.height,
-                                              width: m.dimensions?.width,
-                                              blurHash: m.blurHash,
-                                            ))
-                                        .toList();
-
-                                    downloadUrls = (await Future.wait(
-                                      selectedMedia.map(
-                                        (m) async => await uploadData(
-                                            m.storagePath, m.bytes),
+                                  builder: (context) {
+                                    return GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: ChangePhotoWidget(),
                                       ),
-                                    ))
-                                        .where((u) => u != null)
-                                        .map((u) => u!)
-                                        .toList();
-                                  } finally {
-                                    _model.isDataUploading = false;
-                                  }
-                                  if (selectedUploadedFiles.length ==
-                                          selectedMedia.length &&
-                                      downloadUrls.length ==
-                                          selectedMedia.length) {
-                                    setState(() {
-                                      _model.uploadedLocalFile =
-                                          selectedUploadedFiles.first;
-                                      _model.uploadedFileUrl =
-                                          downloadUrls.first;
-                                    });
-                                  } else {
-                                    setState(() {});
-                                    return;
-                                  }
-                                }
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
                               },
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
-                                child: SvgPicture.network(
-                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/ask-a-cegian-6q7f9f/assets/u6npt1pneu6d/Group_3.svg',
+                                child: SvgPicture.asset(
+                                  'assets/images/Group_3_(1).svg',
                                   width: 300.0,
                                   height: 200.0,
                                   fit: BoxFit.cover,
@@ -368,7 +331,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            color: Color(0xFF0A84FF),
+                                            color: Color(0xFF0B1454),
                                             fontSize: 20.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -385,7 +348,6 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                           ...createUsersRecordData(
                                             displayName:
                                                 _model.nameTextController.text,
-                                            photoUrl: _model.uploadedFileUrl,
                                             branch: _model
                                                 .branchTextController.text,
                                             gradYear: int.tryParse(_model
@@ -404,7 +366,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                             },
                                           ),
                                         });
-                                        context.safePop();
+
+                                        context.goNamed('MenteeHome');
                                       },
                                       text: 'Save',
                                       options: FFButtonOptions(
@@ -414,8 +377,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: Color(0xFF122D6F),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -437,7 +399,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                           width: 1.0,
                                         ),
                                         borderRadius:
-                                            BorderRadius.circular(12.0),
+                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ),
@@ -494,6 +456,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .bodyMediumFamily,
                                                         color: Colors.black,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -523,7 +487,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .nameTextController,
                                                             focusNode: _model
                                                                 .nameFocusNode,
-                                                            autofocus: true,
+                                                            autofocus: false,
                                                             obscureText: false,
                                                             decoration:
                                                                 InputDecoration(
@@ -558,8 +522,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 borderSide:
                                                                     BorderSide(
                                                                   color: Color(
-                                                                      0xFF6D6D6D),
-                                                                  width: 1.0,
+                                                                      0xFF443F9E),
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -572,7 +536,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                     BorderSide(
                                                                   color: Color(
                                                                       0x00000000),
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -585,7 +549,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                     BorderSide(
                                                                   color: Color(
                                                                       0x00000000),
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -598,7 +562,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                     BorderSide(
                                                                   color: Color(
                                                                       0x00000000),
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -608,7 +572,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                               prefixIcon: Icon(
                                                                 Icons.person,
                                                                 color: Color(
-                                                                    0xFF7A7A7A),
+                                                                    0xFF124B99),
                                                               ),
                                                             ),
                                                             style: FlutterFlowTheme
@@ -672,6 +636,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .bodyMediumFamily,
                                                         color: Colors.black,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -701,7 +667,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .graduationYearTextController,
                                                             focusNode: _model
                                                                 .graduationYearFocusNode,
-                                                            autofocus: true,
+                                                            autofocus: false,
                                                             obscureText: false,
                                                             decoration:
                                                                 InputDecoration(
@@ -735,8 +701,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 borderSide:
                                                                     BorderSide(
                                                                   color: Color(
-                                                                      0xFF6D6D6D),
-                                                                  width: 1.0,
+                                                                      0xFF443F9E),
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -750,7 +716,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -764,7 +730,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .error,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -778,7 +744,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .error,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -831,7 +797,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                   child: FaIcon(
                                                     FontAwesomeIcons
                                                         .graduationCap,
-                                                    color: Color(0xFF7A7A7A),
+                                                    color: Color(0xFF124B99),
                                                     size: 24.0,
                                                   ),
                                                 ),
@@ -871,6 +837,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .bodyMediumFamily,
                                                         color: Colors.black,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -900,7 +868,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .branchTextController,
                                                             focusNode: _model
                                                                 .branchFocusNode,
-                                                            autofocus: true,
+                                                            autofocus: false,
                                                             obscureText: false,
                                                             decoration:
                                                                 InputDecoration(
@@ -935,8 +903,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 borderSide:
                                                                     BorderSide(
                                                                   color: Color(
-                                                                      0xFF6D6D6D),
-                                                                  width: 1.0,
+                                                                      0xFF443F9E),
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -950,7 +918,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -964,7 +932,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .error,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -978,7 +946,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .error,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1026,7 +994,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                           10.0, 35.0, 0.0, 0.0),
                                                   child: Icon(
                                                     Icons.psychology,
-                                                    color: Color(0xFF7A7A7A),
+                                                    color: Color(0xFF124B99),
                                                     size: 24.0,
                                                   ),
                                                 ),
@@ -1066,6 +1034,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .bodyMediumFamily,
                                                         color: Colors.black,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -1095,7 +1065,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .linkedinTextController,
                                                             focusNode: _model
                                                                 .linkedinFocusNode,
-                                                            autofocus: true,
+                                                            autofocus: false,
                                                             obscureText: false,
                                                             decoration:
                                                                 InputDecoration(
@@ -1130,8 +1100,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 borderSide:
                                                                     BorderSide(
                                                                   color: Color(
-                                                                      0xFF6D6D6D),
-                                                                  width: 1.0,
+                                                                      0xFF443F9E),
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1145,7 +1115,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1159,7 +1129,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .error,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1173,7 +1143,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .error,
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1221,7 +1191,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                           10.0, 35.0, 0.0, 0.0),
                                                   child: FaIcon(
                                                     FontAwesomeIcons.linkedinIn,
-                                                    color: Color(0xFF7A7A7A),
+                                                    color: Color(0xFF124B99),
                                                     size: 18.0,
                                                   ),
                                                 ),
@@ -1261,6 +1231,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .bodyMediumFamily,
                                                         color: Colors.black,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -1290,7 +1262,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 .personalStatementTextController,
                                                             focusNode: _model
                                                                 .personalStatementFocusNode,
-                                                            autofocus: true,
+                                                            autofocus: false,
                                                             obscureText: false,
                                                             decoration:
                                                                 InputDecoration(
@@ -1324,8 +1296,8 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 borderSide:
                                                                     BorderSide(
                                                                   color: Color(
-                                                                      0xFF6D6D6D),
-                                                                  width: 1.0,
+                                                                      0xFF443F9E),
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1338,7 +1310,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                     BorderSide(
                                                                   color: Color(
                                                                       0x00000000),
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1351,7 +1323,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                     BorderSide(
                                                                   color: Color(
                                                                       0x00000000),
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1364,7 +1336,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                     BorderSide(
                                                                   color: Color(
                                                                       0x00000000),
-                                                                  width: 1.0,
+                                                                  width: 2.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -1382,7 +1354,7 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                 Icons
                                                                     .query_stats,
                                                                 color: Color(
-                                                                    0xFF7A7A7A),
+                                                                    0xFF124B99),
                                                               ),
                                                             ),
                                                             style: FlutterFlowTheme
@@ -1425,100 +1397,28 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 25.0, 0.0, 0.0),
                                           child: Container(
-                                            constraints: BoxConstraints(
-                                              maxWidth: 500.0,
-                                            ),
-                                            decoration: BoxDecoration(),
-                                            child: Text(
-                                              'Topics of Interest',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        color: Colors.black,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, -1.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 0.0),
-                                          child: Container(
                                             width: 300.0,
                                             constraints: BoxConstraints(
                                               maxWidth: 500.0,
                                             ),
-                                            decoration: BoxDecoration(),
-                                            child: AuthUserStreamWidget(
-                                              builder: (context) =>
-                                                  FlutterFlowCheckboxGroup(
-                                                options: [
-                                                  'English Communication',
-                                                  'Higher Education',
-                                                  'Interview Skills',
-                                                  'Entrepreneurship',
-                                                  'Technical Guidance',
-                                                  'Career Guidance'
-                                                ],
-                                                onChanged: (val) => setState(() =>
-                                                    _model.interestOptionsValues =
-                                                        val),
-                                                controller: _model
-                                                        .interestOptionsValueController ??=
-                                                    FormFieldController<
-                                                        List<String>>(
-                                                  List.from((currentUserDocument
-                                                              ?.areasInterest
-                                                              ?.toList() ??
-                                                          []) ??
-                                                      []),
-                                                ),
-                                                activeColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                checkColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                checkboxBorderColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                unselectedTextStyle:
-                                                    FlutterFlowTheme.of(context)
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color: Color(0xFF443F9E),
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Stack(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          5.0, 5.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Topics of Interest',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
@@ -1526,8 +1426,9 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                       context)
                                                                   .bodyMediumFamily,
                                                           color: Colors.black,
-                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -1535,12 +1436,113 @@ class _MenteeProfileEditWidgetState extends State<MenteeProfileEditWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
-                                                checkboxBorderRadius:
-                                                    BorderRadius.circular(4.0),
-                                                initialized: _model
-                                                        .interestOptionsValues !=
-                                                    null,
-                                              ),
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, -1.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 30.0,
+                                                                0.0, 0.0),
+                                                    child: Container(
+                                                      width: 300.0,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500.0,
+                                                      ),
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child:
+                                                          AuthUserStreamWidget(
+                                                        builder: (context) =>
+                                                            FlutterFlowCheckboxGroup(
+                                                          options: [
+                                                            'English Communication',
+                                                            'Higher Education',
+                                                            'Interview Skills',
+                                                            'Entrepreneurship',
+                                                            'Technical Guidance',
+                                                            'Career Guidance'
+                                                          ],
+                                                          onChanged: (val) =>
+                                                              setState(() =>
+                                                                  _model.interestOptionsValues =
+                                                                      val),
+                                                          controller: _model
+                                                                  .interestOptionsValueController ??=
+                                                              FormFieldController<
+                                                                  List<String>>(
+                                                            List.from((currentUserDocument
+                                                                        ?.areasInterest
+                                                                        ?.toList() ??
+                                                                    []) ??
+                                                                []),
+                                                          ),
+                                                          activeColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                          checkColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .info,
+                                                          checkboxBorderColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryText,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                  ),
+                                                          unselectedTextStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        16.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                  ),
+                                                          checkboxBorderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      4.0),
+                                                          initialized: _model
+                                                                  .interestOptionsValues !=
+                                                              null,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),

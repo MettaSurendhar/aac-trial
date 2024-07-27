@@ -67,7 +67,7 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0xFFFFEEB9),
           body: SafeArea(
             top: true,
             child: Align(
@@ -84,7 +84,7 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: MediaQuery.sizeOf(context).height * 0.4,
+                        height: MediaQuery.sizeOf(context).height * 0.35,
                         constraints: BoxConstraints(
                           maxWidth: 500.0,
                         ),
@@ -100,7 +100,7 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
                                 child: SvgPicture.asset(
                                   'assets/images/5423351_Mobile_login_1_(1).svg',
                                   width: 387.0,
-                                  height: 426.0,
+                                  height: 394.0,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -113,7 +113,7 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: MediaQuery.sizeOf(context).height * 0.55,
+                        height: MediaQuery.sizeOf(context).height * 0.5,
                         constraints: BoxConstraints(
                           maxWidth: 500.0,
                         ),
@@ -142,7 +142,7 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 70.0, 0.0, 50.0),
+                                  0.0, 70.0, 0.0, 40.0),
                               child: FFButtonWidget(
                                 onPressed: () {
                                   print('Button pressed ...');
@@ -150,6 +150,7 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
                                 text: '',
                                 icon: Icon(
                                   Icons.check,
+                                  color: Colors.white,
                                   size: 65.0,
                                 ),
                                 options: FFButtonOptions(
@@ -159,7 +160,7 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
                                       24.0, 0.0, 24.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0xFF2A77F2),
+                                  color: Color(0xFFE8505B),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
@@ -187,19 +188,23 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
                               ).animateOnPageLoad(
                                   animationsMap['buttonOnPageLoadAnimation']!),
                             ),
-                            Text(
-                              'SIGN UP SUCCESSFUL',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Roboto',
-                                    color: Color(0xFF7B0708),
-                                    fontSize: 20.0,
-                                    letterSpacing: 1.0,
-                                    fontWeight: FontWeight.w500,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey('Roboto'),
-                                  ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 20.0),
+                              child: Text(
+                                'SIGN UP SUCCESSFUL',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color: Colors.black,
+                                      fontSize: 20.0,
+                                      letterSpacing: 1.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey('Roboto'),
+                                    ),
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -226,14 +231,19 @@ class _SignUpSuccessWidgetState extends State<SignUpSuccessWidget>
                                     },
                                   );
                                 },
-                                text: 'Next',
+                                text: 'Login to continue',
+                                icon: Icon(
+                                  key: ValueKey('Button_73f1'),
+                                  Icons.login_rounded,
+                                  size: 20.0,
+                                ),
                                 options: FFButtonOptions(
                                   height: 40.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: Color(0xFF1A1764),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(

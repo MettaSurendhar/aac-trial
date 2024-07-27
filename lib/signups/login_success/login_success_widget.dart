@@ -255,7 +255,7 @@ class _LoginSuccessWidgetState extends State<LoginSuccessWidget>
                                             iconPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
-                                            color: Color(0xFF2A77F2),
+                                            color: Color(0xFF08505F),
                                             textStyle: FlutterFlowTheme.of(
                                                     context)
                                                 .titleSmall
@@ -296,7 +296,7 @@ class _LoginSuccessWidgetState extends State<LoginSuccessWidget>
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 40.0),
                                         child: Text(
-                                          'LOG IN SUCCESSFUL',
+                                          'LOGIN SUCCESSFUL',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
                                               .override(
@@ -341,9 +341,6 @@ class _LoginSuccessWidgetState extends State<LoginSuccessWidget>
                                                         'Mentee') {
                                                       context.pushNamed(
                                                           'MenteeForm');
-                                                    } else {
-                                                      context.goNamed(
-                                                          'AdminHomeDel');
                                                     }
                                                   } else {
                                                     if (valueOrDefault(
@@ -382,9 +379,14 @@ class _LoginSuccessWidgetState extends State<LoginSuccessWidget>
                                                     }
                                                   }
                                                 },
-                                                text: 'Next',
+                                                text: 'START EXPLORING',
+                                                icon: Icon(
+                                                  Icons.person_search_sharp,
+                                                  size: 18.0,
+                                                ),
                                                 options: FFButtonOptions(
-                                                  height: 40.0,
+                                                  width: 200.0,
+                                                  height: 50.0,
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
@@ -392,9 +394,7 @@ class _LoginSuccessWidgetState extends State<LoginSuccessWidget>
                                                       EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
+                                                  color: Color(0xFF1A1764),
                                                   textStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -420,7 +420,7 @@ class _LoginSuccessWidgetState extends State<LoginSuccessWidget>
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          8.0),
+                                                          12.0),
                                                 ),
                                               ),
                                             ),

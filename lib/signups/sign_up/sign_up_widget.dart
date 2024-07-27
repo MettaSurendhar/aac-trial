@@ -1,10 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -207,8 +207,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               child: Container(
                                                 width: double.infinity,
                                                 child: TextFormField(
-                                                  key: ValueKey(
-                                                      'signupEmail_ocw7'),
                                                   controller: _model
                                                       .signupEmailTextController,
                                                   focusNode: _model
@@ -241,12 +239,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
-                                                        color: Colors.white,
+                                                        color:
+                                                            Color(0xFF336BA5),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
@@ -259,7 +258,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     errorBorder:
                                                         OutlineInputBorder(
@@ -272,7 +271,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     focusedErrorBorder:
                                                         OutlineInputBorder(
@@ -285,7 +284,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     filled: true,
                                                     fillColor: Colors.white,
@@ -328,8 +327,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               child: Container(
                                                 width: double.infinity,
                                                 child: TextFormField(
-                                                  key: ValueKey(
-                                                      'signupPassword_68yx'),
                                                   controller: _model
                                                       .signupPasswordTextController,
                                                   focusNode: _model
@@ -363,12 +360,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
-                                                        color: Colors.white,
+                                                        color:
+                                                            Color(0xFF336BA5),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
@@ -381,7 +379,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     errorBorder:
                                                         OutlineInputBorder(
@@ -394,7 +392,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     focusedErrorBorder:
                                                         OutlineInputBorder(
@@ -407,7 +405,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     filled: true,
                                                     fillColor: Colors.white,
@@ -468,8 +466,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               child: Container(
                                                 width: double.infinity,
                                                 child: TextFormField(
-                                                  key: ValueKey(
-                                                      'signupPasswordConfirm_fbr3'),
                                                   controller: _model
                                                       .signupPasswordConfirmTextController,
                                                   focusNode: _model
@@ -505,12 +501,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                         color:
-                                                            Color(0x00000000),
+                                                            Color(0xFF336BA5),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
@@ -523,7 +519,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     errorBorder:
                                                         OutlineInputBorder(
@@ -536,7 +532,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     focusedErrorBorder:
                                                         OutlineInputBorder(
@@ -549,7 +545,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              40.0),
+                                                              20.0),
                                                     ),
                                                     filled: true,
                                                     fillColor: Colors.white,
@@ -606,148 +602,150 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             ),
                                             Container(
                                               decoration: BoxDecoration(),
-                                            ),
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 16.0),
-                                                child: FFButtonWidget(
-                                                  key: ValueKey('Button_07ya'),
-                                                  onPressed: ((_model
-                                                                      .signupEmailTextController
-                                                                      .text ==
-                                                                  null ||
-                                                              _model.signupEmailTextController
-                                                                      .text ==
-                                                                  '') ||
-                                                          (_model.signupPasswordTextController
-                                                                      .text ==
-                                                                  null ||
-                                                              _model.signupPasswordTextController
-                                                                      .text ==
-                                                                  '') ||
-                                                          (_model.signupPasswordConfirmTextController
-                                                                      .text ==
-                                                                  null ||
-                                                              _model.signupPasswordConfirmTextController
-                                                                      .text ==
-                                                                  ''))
-                                                      ? null
-                                                      : () async {
-                                                          GoRouter.of(context)
-                                                              .prepareAuthEvent();
-                                                          if (_model
-                                                                  .signupPasswordTextController
-                                                                  .text !=
-                                                              _model
-                                                                  .signupPasswordConfirmTextController
-                                                                  .text) {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              SnackBar(
-                                                                content: Text(
-                                                                  'Passwords don\'t match!',
+                                              child: Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 16.0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: ((_model
+                                                                        .signupEmailTextController
+                                                                        .text ==
+                                                                    null ||
+                                                                _model.signupEmailTextController
+                                                                        .text ==
+                                                                    '') ||
+                                                            (_model.signupPasswordTextController
+                                                                        .text ==
+                                                                    null ||
+                                                                _model.signupPasswordTextController
+                                                                        .text ==
+                                                                    '') ||
+                                                            (_model.signupPasswordConfirmTextController
+                                                                        .text ==
+                                                                    null ||
+                                                                _model.signupPasswordConfirmTextController
+                                                                        .text ==
+                                                                    ''))
+                                                        ? null
+                                                        : () async {
+                                                            GoRouter.of(context)
+                                                                .prepareAuthEvent();
+                                                            if (_model
+                                                                    .signupPasswordTextController
+                                                                    .text !=
+                                                                _model
+                                                                    .signupPasswordConfirmTextController
+                                                                    .text) {
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
+                                                                SnackBar(
+                                                                  content: Text(
+                                                                    'Passwords don\'t match!',
+                                                                  ),
                                                                 ),
-                                                              ),
+                                                              );
+                                                              return;
+                                                            }
+
+                                                            final user =
+                                                                await authManager
+                                                                    .createAccountWithEmail(
+                                                              context,
+                                                              _model
+                                                                  .signupEmailTextController
+                                                                  .text,
+                                                              _model
+                                                                  .signupPasswordTextController
+                                                                  .text,
                                                             );
-                                                            return;
-                                                          }
+                                                            if (user == null) {
+                                                              return;
+                                                            }
 
-                                                          final user =
-                                                              await authManager
-                                                                  .createAccountWithEmail(
-                                                            context,
-                                                            _model
-                                                                .signupEmailTextController
-                                                                .text,
-                                                            _model
-                                                                .signupPasswordTextController
-                                                                .text,
-                                                          );
-                                                          if (user == null) {
-                                                            return;
-                                                          }
+                                                            await UsersRecord
+                                                                .collection
+                                                                .doc(user.uid)
+                                                                .update(
+                                                                    createUsersRecordData(
+                                                                  role: widget!
+                                                                          .isMentor
+                                                                      ? 'Mentor'
+                                                                      : 'Mentee',
+                                                                ));
 
-                                                          await UsersRecord
-                                                              .collection
-                                                              .doc(user.uid)
-                                                              .update(
-                                                                  createUsersRecordData(
-                                                                role: widget!
-                                                                        .isMentor
-                                                                    ? 'Mentor'
-                                                                    : 'Mentee',
-                                                              ));
-
-                                                          context.goNamedAuth(
+                                                            context.goNamedAuth(
                                                               'SignUpSuccess',
-                                                              context.mounted);
-                                                        },
-                                                  text: 'Create Account',
-                                                  options: FFButtonOptions(
-                                                    width: 230.0,
-                                                    height: 48.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: Color(0xFF356BBC),
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                    elevation: 3.0,
-                                                    borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1.0,
+                                                              context.mounted,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          0),
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                    text: 'Create Account',
+                                                    options: FFButtonOptions(
+                                                      width: 230.0,
+                                                      height: 48.0,
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color: Color(0xFF1A1764),
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily,
+                                                                color: Colors
+                                                                    .white,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily),
+                                                              ),
+                                                      elevation: 3.0,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
                                                     ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            40.0),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            Text(
-                                              'Or continue with',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        color: Colors.black,
-                                                        letterSpacing: 1.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
                                             ),
                                           ],
                                         ),
@@ -758,94 +756,77 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, -1.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 60.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Existing User?',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          color: Colors.black,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
+                                              // You will have to add an action on this rich text to go to your login page.
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 60.0, 0.0, 12.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed('login');
+                                                  },
+                                                  child: RichText(
+                                                    textScaler:
+                                                        MediaQuery.of(context)
+                                                            .textScaler,
+                                                    text: TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                              'Existing User?  ',
+                                                          style: TextStyle(),
                                                         ),
+                                                        TextSpan(
+                                                          text: 'Login here',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Plus Jakarta Sans',
+                                                                color: Color(
+                                                                    0xFF4B39EF),
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        'Plus Jakarta Sans'),
+                                                              ),
+                                                        )
+                                                      ],
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            color: Color(
+                                                                0xFF101213),
+                                                            fontSize: 14.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            useGoogleFonts:
+                                                                GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        'Plus Jakarta Sans'),
+                                                          ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                              FFButtonWidget(
-                                                key: ValueKey('Button_6lgt'),
-                                                onPressed: () async {
-                                                  context.pushNamed(
-                                                    'login',
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .scale,
-                                                        alignment: Alignment
-                                                            .bottomCenter,
-                                                        duration: Duration(
-                                                            milliseconds: 300),
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                text: 'Log in',
-                                                options: FFButtonOptions(
-                                                  height: 40.0,
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          24.0, 0.0, 24.0, 0.0),
-                                                  iconPadding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: Colors.transparent,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            GoogleFonts.asMap()
-                                                                .containsKey(
-                                                                    'Inter'),
-                                                      ),
-                                                  elevation: 0.0,
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 0.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  hoverTextColor:
-                                                      Color(0xFFFF0000),
                                                 ),
                                               ),
                                             ],
@@ -856,7 +837,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 325.0, 0.0, 0.0),
+                                        0.0, 300.0, 0.0, 20.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -928,37 +909,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 97.0,
-                                          height: 32.0,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFFFEBB9),
-                                          ),
-                                          child: Stack(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: SvgPicture.asset(
-                                                  'assets/images/Label_(1).svg',
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              FlutterFlowIconButton(
-                                                borderWidth: 0.0,
-                                                buttonSize: 131.0,
-                                                icon: Icon(
-                                                  Icons.add,
-                                                  size: 0.0,
-                                                ),
-                                                onPressed: () {
-                                                  print(
-                                                      'IconButton pressed ...');
-                                                },
-                                              ),
-                                            ],
                                           ),
                                         ),
                                       ],

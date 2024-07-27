@@ -22,15 +22,15 @@
           }
         },
         {
-          "client_id": "51135838682-resbrdb8sjsbsc8p3ovioqa5usj6fr9e.apps.googleusercontent.com",
+          "client_id": "51135838682-nce95lnrvsi005sosan7ge2dkd1t8or6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.mycompany.askacegian",
-            "certificate_hash": "7712289de68e2ab7c5aa03f69337c4a88b17df2b"
+            "certificate_hash": "6ccfe24c34481187c5367c3c3cce2a3ddcea4133"
           }
         },
         {
-          "client_id": "51135838682-8ht109mabitpe88aionv5qgel8qafogf.apps.googleusercontent.com",
+          "client_id": "51135838682-i8qlhs8nqsvgu7a353qlb9gb0ar96bp3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

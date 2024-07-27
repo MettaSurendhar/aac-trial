@@ -92,10 +92,15 @@ class UsersRecord extends FirestoreRecord {
   List<DocumentReference> get mentoring => _mentoring ?? const [];
   bool hasMentoring() => _mentoring != null;
 
-  // "refreshToken" field.
-  String? _refreshToken;
-  String get refreshToken => _refreshToken ?? '';
-  bool hasRefreshToken() => _refreshToken != null;
+  // "requestedMentors" field.
+  List<DocumentReference>? _requestedMentors;
+  List<DocumentReference> get requestedMentors => _requestedMentors ?? const [];
+  bool hasRequestedMentors() => _requestedMentors != null;
+
+  // "acceptedMentors" field.
+  List<DocumentReference>? _acceptedMentors;
+  List<DocumentReference> get acceptedMentors => _acceptedMentors ?? const [];
+  bool hasAcceptedMentors() => _acceptedMentors != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -113,7 +118,8 @@ class UsersRecord extends FirestoreRecord {
     _adminVerified = snapshotData['adminVerified'] as bool?;
     _role = snapshotData['role'] as String?;
     _mentoring = getDataList(snapshotData['mentoring']);
-    _refreshToken = snapshotData['refreshToken'] as String?;
+    _requestedMentors = getDataList(snapshotData['requestedMentors']);
+    _acceptedMentors = getDataList(snapshotData['acceptedMentors']);
   }
 
   static CollectionReference get collection =>
@@ -163,7 +169,6 @@ Map<String, dynamic> createUsersRecordData({
   String? linkedinUrl,
   bool? adminVerified,
   String? role,
-  String? refreshToken,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -180,7 +185,6 @@ Map<String, dynamic> createUsersRecordData({
       'linkedin_url': linkedinUrl,
       'adminVerified': adminVerified,
       'role': role,
-      'refreshToken': refreshToken,
     }.withoutNulls,
   );
 
@@ -208,7 +212,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.adminVerified == e2?.adminVerified &&
         e1?.role == e2?.role &&
         listEquality.equals(e1?.mentoring, e2?.mentoring) &&
-        e1?.refreshToken == e2?.refreshToken;
+        listEquality.equals(e1?.requestedMentors, e2?.requestedMentors) &&
+        listEquality.equals(e1?.acceptedMentors, e2?.acceptedMentors);
   }
 
   @override
@@ -228,7 +233,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.adminVerified,
         e?.role,
         e?.mentoring,
-        e?.refreshToken
+        e?.requestedMentors,
+        e?.acceptedMentors
       ]);
 
   @override

@@ -163,11 +163,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => MenteeProfileEditWidget(),
         ),
         FFRoute(
-          name: 'SearchResultcopy2',
-          path: '/searchResultcopy2',
-          builder: (context, params) => SearchResultcopy2Widget(),
-        ),
-        FFRoute(
           name: 'MentorForm',
           path: '/mentorForm',
           builder: (context, params) => MentorFormWidget(),
@@ -188,9 +183,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => MentorProfileWidget(),
         ),
         FFRoute(
-          name: 'MenteeSearch',
-          path: '/menteeSearch',
-          builder: (context, params) => MenteeSearchWidget(),
+          name: 'MenteeSearchOld',
+          path: '/menteeSearchOld',
+          builder: (context, params) => MenteeSearchOldWidget(),
         ),
         FFRoute(
           name: 'SelectionPage',
@@ -231,19 +226,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'SearchResult',
-          path: '/searchResult',
-          builder: (context, params) => SearchResultWidget(),
-        ),
-        FFRoute(
-          name: 'AdminHomeDel',
-          path: '/adminHomeDel',
-          builder: (context, params) => AdminHomeDelWidget(),
-        ),
-        FFRoute(
           name: 'AdminUserManagement',
           path: '/adminUserManagement',
-          builder: (context, params) => AdminUserManagementWidget(),
+          builder: (context, params) => AdminUserManagementWidget(
+            role: params.getParam(
+              'role',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'AdminReports',
@@ -272,9 +262,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => Splash6Widget(),
         ),
         FFRoute(
-          name: 'chat_main',
-          path: '/chatMain',
-          builder: (context, params) => ChatMainWidget(),
+          name: 'chat_main_mentor',
+          path: '/chatMainMentor',
+          builder: (context, params) => ChatMainMentorWidget(),
         ),
         FFRoute(
           name: 'MentorProfileView',
@@ -333,6 +323,39 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               collectionNamePath: ['users'],
             ),
           ),
+        ),
+        FFRoute(
+          name: 'WelcomePagecopy',
+          path: '/welcomePagecopy',
+          builder: (context, params) => WelcomePagecopyWidget(),
+        ),
+        FFRoute(
+          name: 'MeetingDetailsCopy',
+          path: '/meetingDetailsCopy',
+          builder: (context, params) => MeetingDetailsCopyWidget(
+            chatRef: params.getParam(
+              'chatRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['chats'],
+            ),
+            theirRef: params.getParam(
+              'theirRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'MenteeSearch',
+          path: '/menteeSearch',
+          builder: (context, params) => MenteeSearchWidget(),
+        ),
+        FFRoute(
+          name: 'chat_main_mentee',
+          path: '/chatMainMentee',
+          builder: (context, params) => ChatMainMenteeWidget(),
         ),
         FFRoute(
           name: 'WelcomePage',

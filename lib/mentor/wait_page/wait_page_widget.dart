@@ -54,7 +54,7 @@ class _WaitPageWidgetState extends State<WaitPageWidget> {
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: Color(0xFFE6E6E6),
+          backgroundColor: Color(0xFF0A515C),
           body: SafeArea(
             top: true,
             child: Column(
@@ -72,7 +72,7 @@ class _WaitPageWidgetState extends State<WaitPageWidget> {
                         maxWidth: 770.0,
                       ),
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: Color(0xFFE6E6E6),
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 3.0,
@@ -257,7 +257,7 @@ class _WaitPageWidgetState extends State<WaitPageWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'If you have any questions or need further assistance, please contact our support team at [support email/contact number]',
+                                    'If you have any questions or need further assistance, please contact our support team at adminceg@gmail.com',
                                     textAlign: TextAlign.justify,
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium

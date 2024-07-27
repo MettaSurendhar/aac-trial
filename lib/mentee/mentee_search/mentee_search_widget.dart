@@ -1,17 +1,17 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/empty_list_widgets/no_suggestions/no_suggestions_widget.dart';
+import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/mentee/mentee_settings/mentee_settings_widget.dart';
 import '/mentee/mentor_request_card/mentor_request_card_widget.dart';
-import '/mentee/prev_connected_card/prev_connected_card_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:text_search/text_search.dart';
 import 'mentee_search_model.dart';
 export 'mentee_search_model.dart';
 
@@ -33,7 +33,6 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
     _model = createModel(context, () => MenteeSearchModel());
 
     _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -47,662 +46,436 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: Colors.white,
-        drawer: Container(
-          width: 362.0,
-          child: Drawer(
-            elevation: 16.0,
-            child: wrapWithModel(
-              model: _model.menteeSettingsModel,
-              updateCallback: () => setState(() {}),
-              child: MenteeSettingsWidget(),
-            ),
-          ),
+    return StreamBuilder<List<UsersRecord>>(
+      stream: queryUsersRecord(
+        queryBuilder: (usersRecord) => usersRecord.where(
+          'role',
+          isEqualTo: 'Mentor',
         ),
-        body: Align(
-          alignment: AlignmentDirectional(0.0, 0.0),
-          child: Container(
-            constraints: BoxConstraints(
-              maxWidth: 500.0,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              ),
             ),
-            decoration: BoxDecoration(),
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Stack(
+          );
+        }
+        List<UsersRecord> menteeSearchUsersRecordList = snapshot.data!;
+
+        return GestureDetector(
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: Colors.white,
+            drawer: Container(
+              width: 362.0,
+              child: Drawer(
+                elevation: 16.0,
+                child: wrapWithModel(
+                  model: _model.menteeSettingsModel,
+                  updateCallback: () => setState(() {}),
+                  child: MenteeSettingsWidget(),
+                ),
+              ),
+            ),
+            body: Align(
+              alignment: AlignmentDirectional(0.0, 0.0),
+              child: Container(
+                constraints: BoxConstraints(
+                  maxWidth: 500.0,
+                ),
+                decoration: BoxDecoration(),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          15.0, 30.0, 15.0, 120.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
                         children: [
-                          SingleChildScrollView(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Container(
-                                    constraints: BoxConstraints(
-                                      maxWidth: 500.0,
-                                    ),
-                                    decoration: BoxDecoration(),
+                          SafeArea(
+                            child: Container(
+                              width: double.infinity,
+                              height: 44.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          44.0, 59.0, 0.0, 0.0),
-                                      child: Container(
-                                        width: 320.0,
-                                        height: 36.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        child: Container(
-                                          width: 343.0,
-                                          height: 36.0,
-                                          child: Stack(
-                                            children: [
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: TextFormField(
-                                                  controller:
-                                                      _model.textController,
-                                                  focusNode:
-                                                      _model.textFieldFocusNode,
-                                                  onChanged: (_) =>
-                                                      EasyDebounce.debounce(
-                                                    '_model.textController',
-                                                    Duration(
-                                                        milliseconds: 2000),
-                                                    () => setState(() {}),
-                                                  ),
-                                                  autofocus: true,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                    isDense: false,
-                                                    labelText: '  ',
-                                                    labelStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
+                                          8.0, 0.0, 8.0, 0.0),
+                                      child: Autocomplete<String>(
+                                        initialValue: TextEditingValue(),
+                                        optionsBuilder: (textEditingValue) {
+                                          if (textEditingValue.text == '') {
+                                            return const Iterable<
+                                                String>.empty();
+                                          }
+                                          return _model.simpleSearchResults
+                                              .map((e) => e.displayName)
+                                              .toList()
+                                              .where((option) {
+                                            final lowercaseOption =
+                                                option.toLowerCase();
+                                            return lowercaseOption.contains(
+                                                textEditingValue.text
+                                                    .toLowerCase());
+                                          });
+                                        },
+                                        optionsViewBuilder:
+                                            (context, onSelected, options) {
+                                          return AutocompleteOptionsList(
+                                            textFieldKey: _model.textFieldKey,
+                                            textController:
+                                                _model.textController!,
+                                            options: options.toList(),
+                                            onSelected: onSelected,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .labelMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily),
-                                                        ),
-                                                    alignLabelWithHint: false,
-                                                    hintText: 'search',
-                                                    hintStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .labelSmall
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          color:
-                                                              Color(0x9C3C4399),
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          useGoogleFonts:
-                                                              GoogleFonts
-                                                                      .asMap()
-                                                                  .containsKey(
-                                                                      'Inter'),
-                                                        ),
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Color(0x00000000),
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
+                                                                  .bodyMediumFamily),
                                                     ),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
-                                                    ),
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
-                                                    ),
-                                                    focusedErrorBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
-                                                    ),
-                                                    filled: true,
-                                                    fillColor:
-                                                        Color(0x1F767680),
-                                                    contentPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(35.0, 0.0,
-                                                                0.0, 0.0),
-                                                    prefixIcon: Icon(
-                                                      Icons.search_sharp,
-                                                      color: Color(0xFF757575),
-                                                    ),
-                                                    suffixIcon: Icon(
-                                                      Icons.keyboard_voice,
-                                                      color: Color(0xFF757575),
-                                                      size: 22.0,
-                                                    ),
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelSmall
+                                            textHighlightStyle: TextStyle(),
+                                            elevation: 4.0,
+                                            optionBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryBackground,
+                                            optionHighlightColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            maxHeight: 200.0,
+                                          );
+                                        },
+                                        onSelected: (String selection) {
+                                          setState(() =>
+                                              _model.textFieldSelectedOption =
+                                                  selection);
+                                          FocusScope.of(context).unfocus();
+                                        },
+                                        fieldViewBuilder: (
+                                          context,
+                                          textEditingController,
+                                          focusNode,
+                                          onEditingComplete,
+                                        ) {
+                                          _model.textFieldFocusNode = focusNode;
+
+                                          _model.textController =
+                                              textEditingController;
+                                          return TextFormField(
+                                            key: _model.textFieldKey,
+                                            controller: textEditingController,
+                                            focusNode: focusNode,
+                                            onEditingComplete:
+                                                onEditingComplete,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.textController',
+                                              Duration(milliseconds: 2000),
+                                              () async {
+                                                safeSetState(() {
+                                                  _model.simpleSearchResults =
+                                                      TextSearch(
+                                                    menteeSearchUsersRecordList
+                                                        .map(
+                                                          (record) =>
+                                                              TextSearchItem
+                                                                  .fromTerms(
+                                                                      record, [
+                                                            record.displayName!,
+                                                            record.branch!
+                                                          ]),
+                                                        )
+                                                        .toList(),
+                                                  )
+                                                          .search(_model
+                                                              .textController
+                                                              .text)
+                                                          .map((r) => r.object)
+                                                          .toList();
+                                                  ;
+                                                });
+                                                _model.searchActive = true;
+                                                setState(() {});
+                                              },
+                                            ),
+                                            autofocus: false,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelText: '  Search',
+                                              labelStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelSmallFamily,
-                                                        color:
-                                                            Color(0x9C3C4399),
+                                                                .bodyMediumFamily,
+                                                        color: Colors.black,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelSmallFamily),
+                                                                    .bodyMediumFamily),
                                                       ),
-                                                  validator: _model
-                                                      .textControllerValidator
-                                                      .asValidator(context),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 500.0,
-                              ),
-                              decoration: BoxDecoration(),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 52.0, 0.0, 0.0),
-                                    child: FlutterFlowIconButton(
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_left_rounded,
-                                        color: Color(0xBACDFF0E00),
-                                        size: 30.0,
-                                      ),
-                                      onPressed: () async {
-                                        context.safePop();
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 500.0,
-                              ),
-                              decoration: BoxDecoration(),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 510.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 300.0,
-                                      height: 50.0,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                      ),
-                                      child: Text(
-                                        'Currently Connected',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              color: Colors.black,
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey('Inter'),
-                                            ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 540.0, 0.0, 0.0),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 200.0,
-                                        constraints: BoxConstraints(
-                                          maxWidth: 500.0,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Colors.transparent,
-                                        ),
-                                        child: StreamBuilder<
-                                            List<MentorshipsRecord>>(
-                                          stream: queryMentorshipsRecord(
-                                            queryBuilder: (mentorshipsRecord) =>
-                                                mentorshipsRecord
-                                                    .where(
-                                                      'user_refs',
-                                                      arrayContains:
-                                                          currentUserReference,
-                                                    )
-                                                    .where(
-                                                      'ongoing',
-                                                      isEqualTo: true,
-                                                    )
-                                                    .orderBy('started_time',
-                                                        descending: true),
-                                          ),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            List<MentorshipsRecord>
-                                                listViewMentorshipsRecordList =
-                                                snapshot.data!;
-
-                                            return ListView.separated(
-                                              padding: EdgeInsets.fromLTRB(
-                                                20.0,
-                                                0,
-                                                0,
-                                                0,
-                                              ),
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount:
-                                                  listViewMentorshipsRecordList
-                                                      .length,
-                                              separatorBuilder: (_, __) =>
-                                                  SizedBox(width: 20.0),
-                                              itemBuilder:
-                                                  (context, listViewIndex) {
-                                                final listViewMentorshipsRecord =
-                                                    listViewMentorshipsRecordList[
-                                                        listViewIndex];
-                                                return Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    PrevConnectedCardWidget(
-                                                      key: Key(
-                                                          'Keyhee_${listViewIndex}_of_${listViewMentorshipsRecordList.length}'),
-                                                      mentorRef:
-                                                          listViewMentorshipsRecord
-                                                              .mentorRef!,
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 500.0,
-                              ),
-                              decoration: BoxDecoration(),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 0.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 160.0, 0.0, 0.0),
-                                      child: Container(
-                                        width: 200.0,
-                                        height: 50.0,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        child: Text(
-                                          'Suggestions',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                color: Colors.black,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                useGoogleFonts:
-                                                    GoogleFonts.asMap()
-                                                        .containsKey('Inter'),
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 210.0, 0.0, 0.0),
-                              child: Container(
-                                width: 388.0,
-                                height: 282.0,
-                                constraints: BoxConstraints(
-                                  maxWidth: 500.0,
-                                ),
-                                decoration: BoxDecoration(),
-                                child: Stack(
-                                  children: [
-                                    StreamBuilder<List<UsersRecord>>(
-                                      stream: queryUsersRecord(
-                                        queryBuilder: (usersRecord) =>
-                                            usersRecord
-                                                .where(
-                                                  'role',
-                                                  isEqualTo: 'Mentor',
-                                                )
-                                                .where(
-                                                  'mentor_avail',
-                                                  isEqualTo: true,
-                                                ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
+                                              alignLabelWithHint: false,
+                                              hintStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<UsersRecord>
-                                            listViewUsersRecordList =
-                                            snapshot.data!;
-
-                                        return ListView.separated(
-                                          padding: EdgeInsets.zero,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount:
-                                              listViewUsersRecordList.length,
-                                          separatorBuilder: (_, __) =>
-                                              SizedBox(height: 25.0),
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewUsersRecord =
-                                                listViewUsersRecordList[
-                                                    listViewIndex];
-                                            return MentorRequestCardWidget(
-                                              key: Key(
-                                                  'Keyj01_${listViewIndex}_of_${listViewUsersRecordList.length}'),
-                                              mentorDoc: listViewUsersRecord,
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 500.0,
-                              ),
-                              decoration: BoxDecoration(),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 0.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 100.0, 0.0, 0.0),
-                                      child: Container(
-                                        width: 200.0,
-                                        height: 50.0,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        child: Stack(
-                                          children: [
-                                            Container(
-                                              width: 24.0,
-                                              height: 24.0,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              ),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: SvgPicture.asset(
-                                                  'assets/images/Filter_alt.svg',
-                                                  width: 300.0,
-                                                  height: 200.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            FFButtonWidget(
-                                              onPressed: () {
-                                                print('Button pressed ...');
-                                              },
-                                              text: '',
-                                              options: FFButtonOptions(
-                                                width: 90.0,
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        34.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color: Colors.transparent,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color:
-                                                              Color(0xFFFF0000),
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                elevation: 0.0,
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily),
+                                                      ),
+                                              enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: Colors.transparent,
+                                                  color: Color(0xFF1D4569),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      30.0, 5.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Filter',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          color:
-                                                              Color(0xFFFF0000),
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
+                                                  color: Colors.black,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                            validator: _model
+                                                .textControllerValidator
+                                                .asValidator(context),
+                                          );
+                                        },
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 30.0,
+                                    icon: Icon(
+                                      Icons.clear_sharp,
+                                      color: Colors.black,
+                                      size: 15.0,
+                                    ),
+                                    onPressed: () async {
+                                      setState(() {
+                                        _model.textController?.clear();
+                                      });
+                                      _model.searchActive = false;
+                                      setState(() {});
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        ],
+                          if (_model.searchActive)
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Search Result',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        color: Colors.black,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                                Text(
+                                  valueOrDefault<String>(
+                                    _model.simpleSearchResults.length
+                                        .toString(),
+                                    '00',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        color: Colors.black,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ],
+                            ),
+                          if (!_model.searchActive)
+                            Builder(
+                              builder: (context) {
+                                final defaultList =
+                                    menteeSearchUsersRecordList.toList();
+                                if (defaultList.isEmpty) {
+                                  return Center(
+                                    child: Container(
+                                      width: 300.0,
+                                      child: NoSuggestionsWidget(),
+                                    ),
+                                  );
+                                }
+
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: defaultList.length,
+                                  separatorBuilder: (_, __) =>
+                                      SizedBox(height: 10.0),
+                                  itemBuilder: (context, defaultListIndex) {
+                                    final defaultListItem =
+                                        defaultList[defaultListIndex];
+                                    return MentorRequestCardWidget(
+                                      key: Key(
+                                          'Key09k_${defaultListIndex}_of_${defaultList.length}'),
+                                      mentorDoc: defaultListItem,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          if (_model.searchActive)
+                            Builder(
+                              builder: (context) {
+                                final queryList =
+                                    _model.simpleSearchResults.toList();
+                                if (queryList.isEmpty) {
+                                  return Center(
+                                    child: Container(
+                                      width: 300.0,
+                                      child: NoSuggestionsWidget(),
+                                    ),
+                                  );
+                                }
+
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: queryList.length,
+                                  separatorBuilder: (_, __) =>
+                                      SizedBox(height: 10.0),
+                                  itemBuilder: (context, queryListIndex) {
+                                    final queryListItem =
+                                        queryList[queryListIndex];
+                                    return MentorRequestCardWidget(
+                                      key: Key(
+                                          'Key6n6_${queryListIndex}_of_${queryList.length}'),
+                                      mentorDoc: queryListItem,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                        ].divide(SizedBox(height: 10.0)),
                       ),
-                    ],
-                  ),
-                ),
-                Stack(
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Material(
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Material(
                             color: Colors.transparent,
                             elevation: 4.0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.0),
                             ),
                             child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 500.0,
-                              ),
                               decoration: BoxDecoration(
                                 color: Color(0xFFE6E6E6),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -731,11 +504,23 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
                                             .secondary,
                                         icon: Icon(
                                           Icons.cottage_outlined,
-                                          color: Colors.black,
+                                          color: Color(0xFF0B629F),
                                           size: 24.0,
                                         ),
                                         onPressed: () async {
-                                          context.goNamed('MenteeHome');
+                                          context.goNamed(
+                                            'MenteeHome',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
+                                          );
                                         },
                                       ),
                                       Text(
@@ -746,7 +531,7 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMediumFamily,
-                                              color: Colors.black,
+                                              color: Color(0xFF0B629F),
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
@@ -771,12 +556,12 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
                                             .secondary,
                                         hoverIconColor: Color(0xFFFF0000),
                                         icon: Icon(
-                                          Icons.mark_unread_chat_alt_rounded,
-                                          color: Colors.black,
+                                          Icons.mark_unread_chat_alt,
+                                          color: Color(0xFF0B629F),
                                           size: 24.0,
                                         ),
                                         onPressed: () async {
-                                          context.pushNamed('chat_main');
+                                          context.pushNamed('chat_main_mentee');
                                         },
                                       ),
                                       Text(
@@ -787,7 +572,7 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMediumFamily,
-                                              color: Colors.black,
+                                              color: Color(0xFF09324F),
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
@@ -866,7 +651,7 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
                                         hoverIconColor: Color(0xFFFF0000),
                                         icon: Icon(
                                           Icons.settings_sharp,
-                                          color: Colors.black,
+                                          color: Color(0xFF0B629F),
                                           size: 24.0,
                                         ),
                                         onPressed: () async {
@@ -882,7 +667,7 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMediumFamily,
-                                              color: Colors.black,
+                                              color: Color(0xFF09324F),
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
@@ -901,16 +686,16 @@ class _MenteeSearchWidgetState extends State<MenteeSearchWidget> {
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -56,26 +56,11 @@ class _SelectingMentorMenteeWidgetState
               constraints: BoxConstraints(
                 maxWidth: 500.0,
               ),
-              decoration: BoxDecoration(),
+              decoration: BoxDecoration(
+                color: Color(0xFF082E64),
+              ),
               child: Stack(
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: 430.0,
-                        height: 932.0,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Color(0xFFFFF5DC), Color(0xFFFFF0CB)],
-                            stops: [0.0, 1.0],
-                            begin: AlignmentDirectional(0.0, -1.0),
-                            end: AlignmentDirectional(0, 1.0),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                   Stack(
                     children: [
                       Align(
@@ -121,7 +106,7 @@ class _SelectingMentorMenteeWidgetState
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .titleLargeFamily,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -155,7 +140,7 @@ class _SelectingMentorMenteeWidgetState
                                 onPressed: () async {
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
-                                    backgroundColor: Colors.white,
+                                    backgroundColor: Color(0xFF7BA5A4),
                                     enableDrag: false,
                                     context: context,
                                     builder: (context) {
@@ -209,7 +194,7 @@ class _SelectingMentorMenteeWidgetState
                                 onPressed: () async {
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
-                                    backgroundColor: Colors.white,
+                                    backgroundColor: Color(0xFF7BA5A4),
                                     enableDrag: false,
                                     context: context,
                                     builder: (context) {
@@ -264,10 +249,6 @@ class _SelectingMentorMenteeWidgetState
                 ],
               ),
             ),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
           ),
         ],
       ),

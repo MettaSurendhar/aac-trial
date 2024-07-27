@@ -1,6 +1,7 @@
 import '/admin/admin_settings/admin_settings_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/empty_list_widgets/no_reports_found/no_reports_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -57,7 +58,7 @@ class _AdminReportsWidgetState extends State<AdminReportsWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF0A515C),
         drawer: Container(
           width: 362.0,
           child: Drawer(
@@ -69,104 +70,54 @@ class _AdminReportsWidgetState extends State<AdminReportsWidget> {
             ),
           ),
         ),
+        appBar: AppBar(
+          backgroundColor: Color(0xFF033FA4),
+          automaticallyImplyLeading: false,
+          leading: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                child: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 20.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: Colors.white,
+                    size: 30.0,
+                  ),
+                  onPressed: () async {
+                    context.safePop();
+                  },
+                ),
+              ),
+            ],
+          ),
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              AutoSizeText(
+                'Reports on ${widget!.onUserName}',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Inter',
+                      color: Colors.white,
+                      fontSize: 22.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.w500,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey('Inter'),
+                    ),
+              ),
+            ],
+          ),
+          actions: [],
+          centerTitle: false,
+          elevation: 2.0,
+        ),
         body: Stack(
           children: [
-            Align(
-              alignment: AlignmentDirectional(0.0, -1.0),
-              child: Container(
-                constraints: BoxConstraints(
-                  maxWidth: 500.0,
-                ),
-                decoration: BoxDecoration(),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 500.0,
-                        ),
-                        decoration: BoxDecoration(),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 65.0, 0.0, 0.0),
-                                child: Container(
-                                  width: 200.0,
-                                  height: 50.0,
-                                  constraints: BoxConstraints(
-                                    maxHeight: 200.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                  ),
-                                  child: AutoSizeText(
-                                    'Reports on ${widget!.onUserName}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: Colors.black,
-                                          fontSize: 30.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey('Inter'),
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(0.0, 0.0),
-              child: Container(
-                constraints: BoxConstraints(
-                  maxWidth: 500.0,
-                ),
-                decoration: BoxDecoration(),
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, -0.83),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          icon: Icon(
-                            Icons.chevron_left_sharp,
-                            color: Color(0xFFFF0000),
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            context.safePop();
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
             Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -330,7 +281,7 @@ class _AdminReportsWidgetState extends State<AdminReportsWidget> {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 140.0, 0.0, 80.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 80.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -368,6 +319,15 @@ class _AdminReportsWidgetState extends State<AdminReportsWidget> {
                           }
                           List<UserReportsRecord>
                               listViewUserReportsRecordList = snapshot.data!;
+                          if (listViewUserReportsRecordList.isEmpty) {
+                            return Center(
+                              child: Container(
+                                width: 300.0,
+                                height: 400.0,
+                                child: NoReportsFoundWidget(),
+                              ),
+                            );
+                          }
 
                           return ListView.separated(
                             padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -423,7 +383,7 @@ class _AdminReportsWidgetState extends State<AdminReportsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Inter',
-                                                        color: Colors.black,
+                                                        color: Colors.white,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -444,8 +404,7 @@ class _AdminReportsWidgetState extends State<AdminReportsWidget> {
                                                         .labelMedium
                                                         .override(
                                                           fontFamily: 'Inter',
-                                                          color:
-                                                              Color(0xFF959595),
+                                                          color: Colors.white,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts:
                                                               GoogleFonts
@@ -589,18 +548,13 @@ class _AdminReportsWidgetState extends State<AdminReportsWidget> {
                                                                 borderWidth:
                                                                     1.0,
                                                                 buttonSize:
-                                                                    20.0,
-                                                                fillColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .accent1,
+                                                                    30.0,
                                                                 icon: FaIcon(
                                                                   FontAwesomeIcons
-                                                                      .check,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 7.0,
+                                                                      .trashAlt,
+                                                                  color: Color(
+                                                                      0xFFFF0000),
+                                                                  size: 14.0,
                                                                 ),
                                                                 onPressed:
                                                                     () async {
